@@ -11,7 +11,7 @@ import {
   Phone,
   ShoppingBag,
 } from 'lucide-react';
-import { Locale, PROFILE, SERVICES, UI_COPY } from '../data/portfolioData';
+import { type Locale, PROFILE, SERVICES, UI_COPY } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
 interface ServicesContactSectionProps {

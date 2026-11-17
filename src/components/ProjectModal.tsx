@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { ArrowUpRight, Mail, X } from 'lucide-react';
-import { Locale, PROFILE, ProjectItem, UI_COPY } from '../data/portfolioData';
+import { type Locale, PROFILE, type ProjectItem, UI_COPY } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
 interface ProjectModalProps {

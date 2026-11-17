@@ -2,12 +2,12 @@ import { useMemo, useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import {
-  Locale,
+  type Locale,
   PROJECTS,
-  ProjectItem,
-  RoleFilter,
+  type ProjectItem,
+  type RoleFilter,
   STACK_FILTERS,
-  StackFilter,
+  type StackFilter,
   UI_COPY,
 } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';

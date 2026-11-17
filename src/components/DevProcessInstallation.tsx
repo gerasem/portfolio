@@ -9,7 +9,7 @@ import {
   Rocket,
   Sparkles,
 } from 'lucide-react';
-import { Locale, PIPELINE_STAGES, UI_COPY } from '../data/portfolioData';
+import { type Locale, PIPELINE_STAGES, UI_COPY } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
 interface DevProcessInstallationProps {

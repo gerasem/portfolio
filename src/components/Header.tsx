@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Locale, PROFILE, UI_COPY } from '../data/portfolioData';
+import { type Locale, PROFILE, UI_COPY } from '../data/portfolioData';
 
 interface HeaderProps {
   locale: Locale;

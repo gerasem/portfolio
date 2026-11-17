@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Locale, TIMELINE_ENTRIES, UI_COPY } from '../data/portfolioData';
+import { type Locale, TIMELINE_ENTRIES, UI_COPY } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
 interface TimelineSectionProps {

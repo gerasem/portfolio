@@ -15,7 +15,7 @@ import { ProjectModal } from './components/ProjectModal';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ServicesContactSection } from './components/ServicesContactSection';
 import { TimelineSection } from './components/TimelineSection';
-import { Locale, PROFILE, ProjectItem, UI_COPY } from './data/portfolioData';
+import { type Locale, PROFILE, type ProjectItem, UI_COPY } from './data/portfolioData';
 
 export default function App() {
   const [locale, setLocale] = useState<Locale>('de');

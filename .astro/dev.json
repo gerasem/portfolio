@@ -1,0 +1,18 @@
+{
+	"pid": 10789,
+	"port": 3001,
+	"url": "http://localhost:3001",
+	"urls": {
+		"local": [
+			"http://localhost:3001/"
+		],
+		"network": [
+			"http://192.168.178.36:3001/"
+		],
+		"networkInterfaceNames": [
+			"en1"
+		]
+	},
+	"background": true,
+	"startedAt": "2026-11-17T13:01:29.830Z"
+}
