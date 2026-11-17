@@ -1,16 +1,25 @@
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/plus-jakarta-sans";
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Plus Jakarta Sans Variable", system-ui, -apple-system, sans-serif;
+  --font-sans: "DM Sans Variable", system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
   html {
+    font-size: 112.5%;
     scroll-behavior: smooth;
     font-family: var(--font-sans);
     color: #1E293B;
     background-color: #F6F8FC;
+  }
+
+  @media (min-width: 640px) {
+    html {
+      font-size: 125%;
+    }
   }
 
   h1, h2, h3, h4 {
@@ -36,12 +45,50 @@
   animation: gentle-stream 1.8s linear infinite;
 }
 
+@keyframes sky-mist-drift {
+  0%, 100% {
+    transform: translateX(-220px);
+    background: radial-gradient(ellipse at 50% 35%, rgba(147, 197, 253, 0.56), rgba(191, 219, 254, 0.32) 45%, transparent 74%);
+  }
+  33% {
+    transform: translateX(0px);
+    background: radial-gradient(ellipse at 50% 35%, rgba(165, 180, 252, 0.54), rgba(199, 210, 254, 0.3) 45%, transparent 74%);
+  }
+  66% {
+    transform: translateX(220px);
+    background: radial-gradient(ellipse at 50% 35%, rgba(125, 211, 252, 0.56), rgba(186, 230, 253, 0.32) 45%, transparent 74%);
+  }
+}
+
+.animate-sky-mist {
+  animation: sky-mist-drift 9s ease-in-out infinite;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="visible"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-gentle-stream {
+  .animate-gentle-stream,
+  .animate-sky-mist {
     animation: none;
+  }
+  .animate-gentle-stream {
     stroke-dasharray: none;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

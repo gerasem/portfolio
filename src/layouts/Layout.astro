@@ -1,16 +1,21 @@
 ---
 import '../index.css';
+import type { Locale } from '../data/portfolioData';
 
 interface Props {
   title?: string;
   description?: string;
-  lang?: 'de' | 'en';
+  lang?: Locale;
 }
 
 const {
-  title = 'Dmitri Laptev — Frontend & Full-Stack Developer',
-  description = 'Portfolio & Projektübersicht von Dmitri Laptev: Vue/Nuxt, TypeScript, Payload CMS, Astro, React und KI-gestützte Webentwicklung.',
   lang = 'de',
+  title = lang === 'de'
+    ? 'Dmitri Laptev — Frontend & Full-Stack Developer'
+    : 'Dmitri Laptev — Frontend & Full-Stack Developer',
+  description = lang === 'de'
+    ? 'Portfolio & Projektübersicht von Dmitri Laptev: Vue/Nuxt, TypeScript, Payload CMS, Astro, React und KI-gestützte Webentwicklung.'
+    : 'Portfolio & project overview of Dmitri Laptev: Vue/Nuxt, TypeScript, Payload CMS, Astro, React and AI-assisted web development.',
 } = Astro.props;
 ---
 
@@ -25,14 +30,61 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="alternate" hreflang="de" href="/" />
+    <link rel="alternate" hreflang="en" href="/en/" />
   </head>
   <body class="bg-[#F6F8FC] text-[#1E293B] antialiased selection:bg-[#3B82F6]/15 selection:text-[#1E293B]">
     <slot />
+
+    <script>
+      // Scroll reveal observer
+      const revealEls = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      if ('IntersectionObserver' in window && revealEls.length > 0) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                const el = entry.target as HTMLElement;
+                const delay = el.dataset.revealDelay;
+                if (delay) {
+                  el.style.transitionDelay = `${delay}ms`;
+                }
+                el.dataset.reveal = 'visible';
+                observer.unobserve(el);
+              }
+            }
+          },
+          { threshold: 0.12 }
+        );
+        revealEls.forEach((el) => observer.observe(el));
+      } else {
+        revealEls.forEach((el) => {
+          el.dataset.reveal = 'visible';
+        });
+      }
+
+      // Copy email buttons
+      document.querySelectorAll<HTMLButtonElement>('[data-copy-email]').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const email = btn.dataset.copyEmail;
+          if (!email) return;
+          try {
+            await navigator.clipboard.writeText(email);
+            const defaultLabel = btn.querySelector<HTMLElement>('[data-copy-default]');
+            const copiedLabel = btn.querySelector<HTMLElement>('[data-copy-success]');
+            if (defaultLabel && copiedLabel) {
+              defaultLabel.classList.add('hidden');
+              copiedLabel.classList.remove('hidden');
+              window.setTimeout(() => {
+                defaultLabel.classList.remove('hidden');
+                copiedLabel.classList.add('hidden');
+              }, 2000);
+            }
+          } catch {
+            // Clipboard write may be blocked in restricted contexts
+          }
+        });
+      });
+    </script>
   </body>
 </html>

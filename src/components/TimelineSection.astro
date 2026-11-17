@@ -1,0 +1,191 @@
+---
+import { type Locale, TIMELINE_ENTRIES, UI_COPY } from '../data/portfolioData';
+import { TechIcon } from './TechIcon';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = UI_COPY[locale].timeline;
+
+const experienceEntries = TIMELINE_ENTRIES.filter((entry) => entry.category === 'experience');
+const educationEntries = TIMELINE_ENTRIES.filter((entry) => entry.category === 'education');
+---
+
+<section id="timeline" class="scroll-mt-16 py-12">
+  <div class="mx-auto max-w-[1450px] px-6">
+    <div
+      data-reveal
+      class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+    >
+      <div class="max-w-2xl">
+        <h2 class="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+          {copy.title}
+        </h2>
+        <p class="mt-1.5 text-sm leading-relaxed text-slate-500">
+          {copy.subtitle}
+        </p>
+      </div>
+
+      <div
+        role="tablist"
+        aria-label={copy.title}
+        class="inline-flex items-center gap-1 rounded-2xl bg-slate-200/55 p-1 self-start sm:self-auto"
+      >
+        <button
+          type="button"
+          role="tab"
+          data-timeline-tab="experience"
+          aria-selected="true"
+          class="rounded-xl px-3.5 py-1.5 text-xs font-medium transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500 bg-white text-slate-900 shadow-xs"
+        >
+          {copy.tabExperience}
+        </button>
+        <button
+          type="button"
+          role="tab"
+          data-timeline-tab="education"
+          aria-selected="false"
+          class="rounded-xl px-3.5 py-1.5 text-xs font-medium transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500 text-slate-600 hover:text-slate-900"
+        >
+          {copy.tabEducation}
+        </button>
+      </div>
+    </div>
+
+    <!-- Soft Rounded Timeline Container -->
+    <div
+      data-reveal
+      data-reveal-delay="60"
+      class="mt-6 rounded-3xl border border-slate-200/65 bg-white/95 px-6 py-2 shadow-[0_8px_28px_-10px_rgba(30,41,59,0.06)]"
+    >
+      <div data-timeline-panel="experience">
+        {experienceEntries.map((entry, idx) => (
+          <div
+            class={`grid grid-cols-1 gap-3 py-5 md:grid-cols-12 md:gap-6 ${
+              idx < experienceEntries.length - 1 ? 'border-b border-slate-100' : ''
+            }`}
+          >
+            <div class="md:col-span-3">
+              <div class="text-xs font-semibold tabular-nums text-blue-600">
+                {entry.period}
+              </div>
+              <div class="mt-0.5 text-xs text-slate-500">
+                {entry.location[locale]}
+              </div>
+            </div>
+
+            <div class="md:col-span-4">
+              <div class="font-display text-sm font-semibold text-slate-800">
+                {entry.organization}
+              </div>
+              <div class="mt-0.5 text-xs font-medium text-slate-500">
+                {entry.role[locale]}
+              </div>
+              {entry.stack && entry.stack.length > 0 && (
+                <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                  {entry.stack.map((tech) => (
+                    <span class="inline-flex items-center gap-1 text-[0.71875rem] font-medium text-slate-500">
+                      <TechIcon name={tech} className="h-3.5 w-3.5 shrink-0" />
+                      <span>{tech}</span>
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div class="md:col-span-5">
+              <ul class="space-y-1.5">
+                {entry.highlights[locale].map((bullet) => (
+                  <li class="flex items-start gap-2.5 text-[0.84375rem] leading-relaxed text-slate-600">
+                    <span
+                      aria-hidden="true"
+                      class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-300"
+                    />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div data-timeline-panel="education" class="hidden">
+        {educationEntries.map((entry, idx) => (
+          <div
+            class={`grid grid-cols-1 gap-3 py-5 md:grid-cols-12 md:gap-6 ${
+              idx < educationEntries.length - 1 ? 'border-b border-slate-100' : ''
+            }`}
+          >
+            <div class="md:col-span-3">
+              <div class="text-xs font-semibold tabular-nums text-blue-600">
+                {entry.period}
+              </div>
+              <div class="mt-0.5 text-xs text-slate-500">
+                {entry.location[locale]}
+              </div>
+            </div>
+
+            <div class="md:col-span-4">
+              <div class="font-display text-sm font-semibold text-slate-800">
+                {entry.organization}
+              </div>
+              <div class="mt-0.5 text-xs font-medium text-slate-500">
+                {entry.role[locale]}
+              </div>
+              {entry.stack && entry.stack.length > 0 && (
+                <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                  {entry.stack.map((tech) => (
+                    <span class="inline-flex items-center gap-1 text-[0.71875rem] font-medium text-slate-500">
+                      <TechIcon name={tech} className="h-3.5 w-3.5 shrink-0" />
+                      <span>{tech}</span>
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div class="md:col-span-5">
+              <ul class="space-y-1.5">
+                {entry.highlights[locale].map((bullet) => (
+                  <li class="flex items-start gap-2.5 text-[0.84375rem] leading-relaxed text-slate-600">
+                    <span
+                      aria-hidden="true"
+                      class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-300"
+                    />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-timeline-tab]');
+  const panels = document.querySelectorAll<HTMLElement>('[data-timeline-panel]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.timelineTab;
+      tabs.forEach((btn) => {
+        const isActive = btn.dataset.timelineTab === target;
+        btn.setAttribute('aria-selected', String(isActive));
+        btn.classList.toggle('bg-white', isActive);
+        btn.classList.toggle('text-slate-900', isActive);
+        btn.classList.toggle('shadow-xs', isActive);
+        btn.classList.toggle('text-slate-600', !isActive);
+        btn.classList.toggle('hover:text-slate-900', !isActive);
+      });
+      panels.forEach((panel) => {
+        panel.classList.toggle('hidden', panel.dataset.timelinePanel !== target);
+      });
+    });
+  });
+</script>

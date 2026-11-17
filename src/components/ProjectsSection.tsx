@@ -46,7 +46,7 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
 
   return (
     <section id="projects" className="scroll-mt-16 py-12">
-      <div className="mx-auto max-w-[1160px] px-6">
+      <div className="mx-auto max-w-[1450px] px-6">
         {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -183,7 +183,7 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
                     {project.title[locale]}
                   </h3>
 
-                  <p className="mt-2 text-[13.5px] leading-relaxed text-slate-600">
+                  <p className="mt-2 text-[0.84375rem] leading-relaxed text-slate-600">
                     {project.summary[locale]}
                   </p>
                 </div>

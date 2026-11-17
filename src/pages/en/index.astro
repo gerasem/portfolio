@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import { ProjectsIsland } from '../../components/ProjectsIsland';
+import TimelineSection from '../../components/TimelineSection.astro';
+import ServicesContactSection from '../../components/ServicesContactSection.astro';
+import Footer from '../../components/Footer.astro';
+
+const locale = 'en' as const;
+---
+
+<Layout lang={locale}>
+  <div id="top" class="relative min-h-screen overflow-x-clip bg-[#F6F8FC] text-slate-800">
+    <!-- Soft atmospheric sky-mist wash at top moving gently left-to-right -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-0 top-0 z-0 flex justify-center overflow-hidden"
+    >
+      <div class="animate-sky-mist h-[480px] w-[820px] rounded-full opacity-80 blur-3xl"></div>
+    </div>
+
+    <Header locale={locale} />
+
+    <main class="relative z-10">
+      <Hero locale={locale} />
+      <ProjectsIsland locale={locale} client:visible />
+      <TimelineSection locale={locale} />
+      <ServicesContactSection locale={locale} />
+    </main>
+
+    <Footer locale={locale} />
+  </div>
+</Layout>

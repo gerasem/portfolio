@@ -225,7 +225,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 >
                   <TechIcon name={node.name} className="h-3.5 w-3.5" />
                 </span>
-                <span className="truncate text-[11.5px] font-medium">
+                <span className="truncate text-[0.71875rem] font-medium">
                   {node.name}
                 </span>
               </button>
@@ -246,7 +246,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
           <span className="font-display text-xs font-semibold text-slate-800">
             {activeStage.index}. {activeStage.label[locale]}
           </span>
-          <span className="text-[11.5px] font-medium text-blue-600">
+          <span className="text-[0.71875rem] font-medium text-blue-600">
             {activeStage.outputArtifact[locale]}
           </span>
         </div>
