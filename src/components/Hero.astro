@@ -1,12 +1,9 @@
 ---
 import {
   ArrowUpRight,
-  Check,
-  Copy,
   Github,
   Linkedin,
   Mail,
-  MessageSquare,
 } from 'lucide-react';
 import { type Locale, PROFILE, UI_COPY } from '../data/portfolioData';
 import { DevProcessInstallation } from './DevProcessInstallation';
@@ -27,14 +24,8 @@ const mailtoSubject = encodeURIComponent(
 
 <section class="pt-8 pb-10 sm:pt-12 sm:pb-12">
   <div class="mx-auto max-w-[1450px] px-6">
-    <!-- Compact Hero Utility Row: Language Switcher + Qualifications Metadata -->
-    <div class="mb-8 flex flex-wrap items-center justify-between gap-3">
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-slate-500">
-        <span>{PROFILE.workPermit[locale]}</span>
-        <span aria-hidden="true" class="text-slate-300">·</span>
-        <span>{PROFILE.languages[locale]}</span>
-      </div>
-
+    <!-- Compact Hero Utility Row: Language Switcher -->
+    <div class="mb-8 flex flex-wrap items-center justify-end gap-3">
       <div
         role="group"
         aria-label="Language switcher"
@@ -83,7 +74,7 @@ const mailtoSubject = encodeURIComponent(
           {copy.hero.lead}
         </p>
 
-        <!-- Tactile Softly Shadowed Contact Actions -->
+        <!-- Tactile Softly Shadowed Contact Action -->
         <div class="mt-7 flex flex-wrap items-center gap-2.5">
           <a
             href={`mailto:${PROFILE.email}?subject=${mailtoSubject}`}
@@ -92,31 +83,6 @@ const mailtoSubject = encodeURIComponent(
             <Mail className="h-3.5 w-3.5" />
             <span>{copy.hero.primaryAction}</span>
           </a>
-
-          <a
-            href={PROFILE.whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-2.5 text-xs font-medium text-slate-700 shadow-[0_4px_12px_-2px_rgba(30,41,59,0.06)] transition-all duration-200 hover:border-slate-300 hover:bg-white hover:shadow-[0_6px_16px_-2px_rgba(30,41,59,0.1)] active:scale-[0.98] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500"
-          >
-            <MessageSquare className="h-3.5 w-3.5 text-emerald-500" />
-            <span>WhatsApp</span>
-          </a>
-
-          <button
-            type="button"
-            data-copy-email={PROFILE.email}
-            class="inline-flex items-center gap-1.5 rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-2.5 text-xs font-medium text-slate-700 shadow-[0_4px_12px_-2px_rgba(30,41,59,0.06)] transition-all duration-200 hover:border-slate-300 hover:bg-white hover:shadow-[0_6px_16px_-2px_rgba(30,41,59,0.1)] active:scale-[0.98] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500"
-          >
-            <span data-copy-default class="inline-flex items-center gap-1.5">
-              <Copy className="h-3.5 w-3.5 text-slate-400" />
-              <span>{PROFILE.email}</span>
-            </span>
-            <span data-copy-success class="hidden inline-flex items-center gap-1.5">
-              <Check className="h-3.5 w-3.5 text-blue-600" />
-              <span>{copy.hero.copiedEmail}</span>
-            </span>
-          </button>
         </div>
 
         <!-- Soft GitHub & LinkedIn Profile Links -->
@@ -150,8 +116,8 @@ const mailtoSubject = encodeURIComponent(
       </div>
     </div>
 
-    <!-- Full-Width 4-Column Capability Strip Below Hero Split -->
-    <div class="mt-8 grid grid-cols-2 gap-3.5 lg:grid-cols-4">
+    <!-- Full-Width 5-Column Capability Strip Below Hero Split -->
+    <div class="mt-8 grid grid-cols-2 gap-3.5 lg:grid-cols-5">
       {copy.metricsStrip.map((metric, idx) => (
         <div
           data-reveal

@@ -79,7 +79,7 @@ export const PROFILE = {
   phone: '+49 159 0707 3013',
   phoneHref: 'tel:+4915907073013',
   whatsappHref: 'https://wa.me/4915907073013',
-  location: 'D-83395 Freilassing',
+  location: 'D-83395 Freilassing, Bayern, Deutschland',
   githubUrl: 'https://github.com/gerasem',
   githubHandle: 'github.com/gerasem',
   linkedinUrl: 'https://www.linkedin.com/in/dmitri-laptev',
@@ -117,6 +117,7 @@ export const UI_COPY = {
       { value: '7 Stationen', label: 'Produktteams & Freelance' },
       { value: 'Vue · TS · Payload', label: 'Headless & Frontend-Fokus' },
       { value: 'Claude Code · Codex', label: 'KI-gestützte Workflows' },
+      { value: 'DE · EN · RU', label: 'Deutsch (C1) · Englisch (B1) · Russisch (Muttersprache)' },
     ],
     installation: {
       title: 'Entwicklungsprozess & Tech-Architektur',
@@ -155,7 +156,7 @@ export const UI_COPY = {
       deliverablesLabel: 'Typischer Umfang',
       ctaHeading: 'Bereit für das nächste Projekt oder ein Gespräch?',
       ctaSubtext: 'Direkter Kontakt per E-Mail, Messenger oder über meine Profile — unkompliziert und ohne Umwege.',
-      contactButton: 'Contact me',
+      contactButton: 'Kontakt',
       whatsappButton: 'WhatsApp',
       phoneButton: 'Anrufen',
     },
@@ -185,6 +186,7 @@ export const UI_COPY = {
       { value: '7 Engagements', label: 'Product Teams & Freelance' },
       { value: 'Vue · TS · Payload', label: 'Headless & Frontend Core' },
       { value: 'Claude Code · Codex', label: 'AI-Assisted Workflows' },
+      { value: 'DE · EN · RU', label: 'German (C1) · English (B1) · Russian (Native)' },
     ],
     installation: {
       title: 'Development Process & Tech Architecture',

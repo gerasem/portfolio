@@ -1,13 +1,8 @@
 ---
 import {
   AppWindow,
-  ArrowUpRight,
-  Check,
-  Copy,
   LayoutTemplate,
   Mail,
-  MessageSquare,
-  Phone,
   ShoppingBag,
 } from 'lucide-react';
 import { type Locale, PROFILE, SERVICES, UI_COPY } from '../data/portfolioData';
@@ -112,10 +107,6 @@ const SERVICE_ICONS = [LayoutTemplate, ShoppingBag, AppWindow];
         </h3>
         <p class="mt-1 text-sm text-slate-600">{copy.ctaSubtext}</p>
         <div class="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-slate-500">
-          <span class="text-slate-700">{PROFILE.email}</span>
-          <span aria-hidden="true" class="text-slate-300">·</span>
-          <span class="tabular-nums">{PROFILE.phone}</span>
-          <span aria-hidden="true" class="text-slate-300">·</span>
           <span>{PROFILE.location}</span>
         </div>
       </div>
@@ -128,40 +119,6 @@ const SERVICE_ICONS = [LayoutTemplate, ShoppingBag, AppWindow];
           <Mail className="h-3.5 w-3.5" />
           <span>{copy.contactButton}</span>
         </a>
-
-        <a
-          href={PROFILE.whatsappHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 rounded-2xl border border-slate-200/80 bg-white px-4 py-2.5 text-xs font-medium text-slate-700 shadow-[0_4px_12px_-2px_rgba(30,41,59,0.06)] transition-all duration-200 hover:border-slate-300 hover:shadow-[0_6px_16px_-2px_rgba(30,41,59,0.1)] active:scale-[0.98] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500"
-        >
-          <MessageSquare className="h-3.5 w-3.5 text-emerald-500" />
-          <span>{copy.whatsappButton}</span>
-          <ArrowUpRight className="h-3 w-3 text-slate-400" />
-        </a>
-
-        <a
-          href={PROFILE.phoneHref}
-          class="inline-flex items-center gap-1.5 rounded-2xl border border-slate-200/80 bg-white px-4 py-2.5 text-xs font-medium text-slate-700 shadow-[0_4px_12px_-2px_rgba(30,41,59,0.06)] transition-all duration-200 hover:border-slate-300 hover:shadow-[0_6px_16px_-2px_rgba(30,41,59,0.1)] active:scale-[0.98] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500"
-        >
-          <Phone className="h-3.5 w-3.5 text-slate-400" />
-          <span>{copy.phoneButton}</span>
-        </a>
-
-        <button
-          type="button"
-          data-copy-email={PROFILE.email}
-          class="inline-flex items-center gap-1.5 rounded-2xl border border-slate-200/80 bg-white px-4 py-2.5 text-xs font-medium text-slate-700 shadow-[0_4px_12px_-2px_rgba(30,41,59,0.06)] transition-all duration-200 hover:border-slate-300 hover:shadow-[0_6px_16px_-2px_rgba(30,41,59,0.1)] active:scale-[0.98] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500"
-        >
-          <span data-copy-default class="inline-flex items-center gap-1.5">
-            <Copy className="h-3.5 w-3.5 text-slate-400" />
-            <span>{UI_COPY[locale].hero.copyEmail}</span>
-          </span>
-          <span data-copy-success class="hidden inline-flex items-center gap-1.5">
-            <Check className="h-3.5 w-3.5 text-blue-600" />
-            <span>{UI_COPY[locale].hero.copiedEmail}</span>
-          </span>
-        </button>
       </div>
     </div>
   </div>

@@ -4,8 +4,6 @@ import {
   Compass,
   Database,
   Layout,
-  Pause,
-  Play,
   Rocket,
   Sparkles,
 } from 'lucide-react';
@@ -85,7 +83,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
         className="pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full bg-blue-100/50 blur-3xl"
       />
 
-      {/* Top Bar: Title + Auto-Cycle Control */}
+      {/* Top Bar: Title */}
       <div className="relative flex items-start justify-between gap-4">
         <div>
           <h2 className="font-display text-sm font-semibold tracking-tight text-slate-800">
@@ -93,24 +91,6 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
           </h2>
           <p className="mt-0.5 text-xs text-slate-500">{copy.subtitle}</p>
         </div>
-
-        <button
-          type="button"
-          onClick={() => setIsAutoPlaying((prev) => !prev)}
-          className="inline-flex items-center gap-1.5 rounded-2xl border border-slate-200/80 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-xs transition-all duration-150 hover:border-slate-300 hover:text-slate-900 hover:shadow-sm whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500"
-        >
-          {isAutoPlaying ? (
-            <>
-              <Pause className="h-3.5 w-3.5 text-slate-400" />
-              <span>{copy.pause}</span>
-            </>
-          ) : (
-            <>
-              <Play className="h-3.5 w-3.5 text-blue-500" />
-              <span>{copy.play}</span>
-            </>
-          )}
-        </button>
       </div>
 
       {/* Flowing 4-Phase Stepper with Smooth Shared Active Indicator */}
@@ -125,7 +105,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 key={stage.id}
                 type="button"
                 onClick={() => handleSelectStage(idx)}
-                className="relative rounded-xl px-3 py-2.5 text-left transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-blue-500"
+                className="relative flex flex-col justify-between rounded-xl px-2.5 py-2.5 text-left transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-blue-500"
               >
                 {isActive && (
                   <motion.div
@@ -156,7 +136,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 </div>
 
                 <div
-                  className={`relative z-10 mt-2 truncate text-xs font-medium ${
+                  className={`relative z-10 mt-2 text-xs leading-snug font-medium ${
                     isActive ? 'text-slate-900 font-semibold' : 'text-slate-500'
                   }`}
                 >
