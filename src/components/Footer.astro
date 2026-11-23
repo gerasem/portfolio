@@ -1,6 +1,8 @@
 ---
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { type Locale, PROFILE, UI_COPY } from '../data/portfolioData';
+import ImpressumModal from './ImpressumModal.astro';
+import DatenschutzModal from './DatenschutzModal.astro';
 
 interface Props {
   locale: Locale;
@@ -44,6 +46,23 @@ const copy = UI_COPY[locale];
         <Mail className="h-3.5 w-3.5" />
         <span>{PROFILE.email}</span>
       </a>
+      <button
+        type="button"
+        data-open-impressum
+        class="inline-flex items-center transition-colors hover:text-slate-900"
+      >
+        <span>Impressum</span>
+      </button>
+      <button
+        type="button"
+        data-open-datenschutz
+        class="inline-flex items-center transition-colors hover:text-slate-900"
+      >
+        <span>{locale === 'de' ? 'Datenschutz' : 'Privacy'}</span>
+      </button>
     </div>
   </div>
 </footer>
+
+<ImpressumModal locale={locale} />
+<DatenschutzModal locale={locale} />

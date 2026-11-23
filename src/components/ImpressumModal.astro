@@ -1,0 +1,240 @@
+---
+import { X } from 'lucide-react';
+import type { Locale } from '../data/portfolioData';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<div
+  id="impressum-modal"
+  data-nosnippet
+  data-locale={locale}
+  role="dialog"
+  aria-modal="true"
+  aria-label="Impressum"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/45 p-4 backdrop-blur-xs"
+>
+  <div
+    data-impressum-panel
+    class="relative max-h-[88vh] w-full max-w-xl overflow-y-auto rounded-3xl border border-slate-200/80 bg-white p-6 shadow-[0_24px_60px_-15px_rgba(15,23,42,0.25)] sm:p-7"
+  >
+    <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div class="font-display text-base font-semibold tracking-tight text-slate-900">
+        Impressum
+      </div>
+      <button
+        type="button"
+        data-close-impressum
+        aria-label={locale === 'de' ? 'Schließen' : 'Close'}
+        class="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-blue-500"
+      >
+        <X className="h-4 w-4" />
+      </button>
+    </div>
+
+    <!-- Dynamically populated non-semantic container (cleared on close) -->
+    <div id="impressum-body" class="mt-5 space-y-5 text-xs leading-relaxed text-slate-600"></div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('impressum-modal') as HTMLElement | null;
+  const panel = modal?.querySelector('[data-impressum-panel]') as HTMLElement | null;
+  const bodyEl = document.getElementById('impressum-body');
+  const closeBtn = modal?.querySelector('[data-close-impressum]') as HTMLButtonElement | null;
+  const triggers = document.querySelectorAll<HTMLButtonElement>('[data-open-impressum]');
+
+  const PAYLOAD = {
+    name: [30, 55, 51, 46, 40, 51, 122, 22, 59, 42, 46, 63, 44],
+    street: [21, 56, 63, 40, 63, 122, 28, 63, 54, 62, 41, 46, 40, 116, 122, 108],
+    city: [98, 105, 105, 99, 111, 122, 28, 40, 63, 51, 54, 59, 41, 41, 51, 52, 61],
+    countryDe: [30, 63, 47, 46, 41, 57, 50, 54, 59, 52, 62],
+    countryEn: [29, 63, 40, 55, 59, 52, 35],
+    email: [62, 98, 105, 105, 99, 111, 26, 61, 55, 59, 51, 54, 116, 57, 53, 55],
+    phone: [113, 110, 99, 122, 107, 111, 108, 109, 98, 122, 99, 108, 98, 107, 105, 105],
+  };
+
+  const DECOY_TOKENS = ['x9', '@n', '0z', 'k#', '7q', 'v_', '4m'];
+
+  const decodeBytes = (bytes: number[]): string =>
+    new TextDecoder().decode(new Uint8Array(bytes.map((b) => b ^ 0x5a)));
+
+  const createNoiseSpan = (): HTMLSpanElement => {
+    const decoy = document.createElement('span');
+    decoy.setAttribute('aria-hidden', 'true');
+    decoy.textContent = DECOY_TOKENS[Math.floor(Math.random() * DECOY_TOKENS.length)];
+    decoy.style.cssText =
+      'position:absolute;width:0;height:0;overflow:hidden;opacity:0;pointer-events:none;user-select:none;';
+    return decoy;
+  };
+
+  const createScrambledLine = (bytes: number[], extraClass = ''): HTMLDivElement => {
+    const text = decodeBytes(bytes);
+    const wrap = document.createElement('div');
+    wrap.className = `relative inline-flex flex-wrap items-baseline ${extraClass}`.trim();
+
+    const chunks: { part: string; order: number }[] = [];
+    for (let i = 0; i < text.length; i += 2) {
+      chunks.push({ part: text.slice(i, i + 2), order: i });
+    }
+
+    // Fisher-Yates shuffle of DOM order while preserving visual order via CSS `order`
+    for (let i = chunks.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [chunks[i], chunks[j]] = [chunks[j], chunks[i]];
+    }
+
+    chunks.forEach((chunk, idx) => {
+      if (idx % 2 === 1) {
+        wrap.appendChild(createNoiseSpan());
+      }
+      const span = document.createElement('span');
+      span.textContent = chunk.part;
+      span.style.order = String(chunk.order);
+      span.style.whiteSpace = 'pre';
+      wrap.appendChild(span);
+    });
+
+    return wrap;
+  };
+
+  const createSectionBlock = (title: string, children: HTMLElement[]): HTMLDivElement => {
+    const block = document.createElement('div');
+    block.className = 'space-y-1.5';
+
+    const heading = document.createElement('div');
+    heading.className = 'font-display text-xs font-semibold text-slate-800';
+    heading.textContent = title;
+    block.appendChild(heading);
+
+    children.forEach((child) => block.appendChild(child));
+    return block;
+  };
+
+  const createPlainNote = (text: string): HTMLDivElement => {
+    const div = document.createElement('div');
+    div.className = 'text-slate-600';
+    div.textContent = text;
+    return div;
+  };
+
+  const createLabeledScrambledRow = (label: string, bytes: number[]): HTMLDivElement => {
+    const row = document.createElement('div');
+    row.className = 'flex flex-wrap items-baseline gap-1.5';
+
+    const lbl = document.createElement('span');
+    lbl.className = 'font-medium text-slate-700';
+    lbl.textContent = label;
+
+    row.appendChild(lbl);
+    row.appendChild(createScrambledLine(bytes, 'text-slate-600'));
+    return row;
+  };
+
+  const renderImpressumBody = () => {
+    if (!bodyEl || !modal) return;
+    const isDe = modal.dataset.locale !== 'en';
+    bodyEl.replaceChildren();
+
+    const addressLines = document.createElement('div');
+    addressLines.className = 'flex flex-col gap-0.5 text-slate-600';
+    addressLines.appendChild(createScrambledLine(PAYLOAD.name, 'font-medium text-slate-800'));
+    addressLines.appendChild(createScrambledLine(PAYLOAD.street));
+    addressLines.appendChild(createScrambledLine(PAYLOAD.city));
+    addressLines.appendChild(
+      createScrambledLine(isDe ? PAYLOAD.countryDe : PAYLOAD.countryEn)
+    );
+
+    bodyEl.appendChild(
+      createSectionBlock(
+        isDe
+          ? 'Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)'
+          : 'Information pursuant to § 5 DDG (German Digital Services Act)',
+        [addressLines]
+      )
+    );
+
+    bodyEl.appendChild(
+      createSectionBlock(isDe ? 'Kontakt' : 'Contact', [
+        createLabeledScrambledRow(isDe ? 'Telefon:' : 'Phone:', PAYLOAD.phone),
+        createLabeledScrambledRow('E-Mail:', PAYLOAD.email),
+      ])
+    );
+
+    const responsibleLines = document.createElement('div');
+    responsibleLines.className = 'flex flex-col gap-0.5 text-slate-600';
+    responsibleLines.appendChild(createScrambledLine(PAYLOAD.name, 'font-medium text-slate-800'));
+    responsibleLines.appendChild(createScrambledLine(PAYLOAD.street));
+    responsibleLines.appendChild(createScrambledLine(PAYLOAD.city));
+
+    bodyEl.appendChild(
+      createSectionBlock(
+        isDe
+          ? 'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV'
+          : 'Responsible for content pursuant to § 18 (2) MStV',
+        [responsibleLines]
+      )
+    );
+
+    bodyEl.appendChild(
+      createSectionBlock(
+        isDe
+          ? 'Verbraucherstreitbeilegung / Universalschlichtungsstelle (§ 36 VSBG)'
+          : 'Consumer Dispute Resolution (§ 36 VSBG)',
+        [
+          createPlainNote(
+            isDe
+              ? 'Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.'
+              : 'We are neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board.'
+          ),
+        ]
+      )
+    );
+
+    bodyEl.appendChild(
+      createSectionBlock(
+        isDe ? 'Haftung für Inhalte & Links' : 'Liability for Content & Links',
+        [
+          createPlainNote(
+            isDe
+              ? 'Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Bei Bekanntwerden von Rechtsverletzungen werden entsprechende Inhalte oder Verlinkungen umgehend entfernt.'
+              : 'The contents of this website were created with the utmost care. However, no guarantee can be given for the accuracy, completeness, or topicality of the content. Upon notification of any legal infringements, such content or external links will be removed immediately.'
+          ),
+        ]
+      )
+    );
+  };
+
+  const openModal = () => {
+    if (!modal) return;
+    renderImpressumBody();
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  };
+
+  const closeModal = () => {
+    if (!modal || !bodyEl) return;
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    bodyEl.replaceChildren();
+    document.body.style.overflow = '';
+  };
+
+  triggers.forEach((btn) => btn.addEventListener('click', openModal));
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (event) => {
+    if (event.target === modal) closeModal();
+  });
+  panel?.addEventListener('click', (event) => event.stopPropagation());
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>
