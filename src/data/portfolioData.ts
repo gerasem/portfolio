@@ -105,9 +105,9 @@ export const UI_COPY = {
       contactCta: 'Kontakt',
     },
     hero: {
-      kicker: 'Frontend & Full-Stack Webentwickler · Freilassing',
-      headline: 'Strukturierte Web-Architekturen, Headless-Systeme und performante Frontends.',
-      lead: 'Über zehn Jahre Praxiserfahrung in der Entwicklung, Modernisierung und Skalierung produktiver Webanwendungen — von Vue/Nuxt und TypeScript über Payload CMS bis zu KI-gestützten Engineering-Workflows.',
+      kicker: 'Full-Stack Developer · Fokus Frontend · Freilassing',
+      headline: 'Hallo, ich bin Dmitri — Full-Stack Developer mit Fokus auf Frontend.',
+      lead: 'Seit über zehn Jahren entwickle, modernisiere und betreue ich Webprojekte von der ersten Idee bis zum produktiven Betrieb. Am liebsten arbeite ich an der Schnittstelle von Design und Code — mit Vue, React, Headless CMS und KI, um komplexe Produkte einfach und schnell nutzbar zu machen.',
       primaryAction: 'E-Mail schreiben',
       copyEmail: 'E-Mail kopieren',
       copiedEmail: 'Kopiert',
@@ -116,7 +116,7 @@ export const UI_COPY = {
     metricsStrip: [
       { value: '10+ Jahre', label: 'Webentwicklung seit 2016' },
       { value: '7 Stationen', label: 'Produktteams & Freelance' },
-      { value: 'Vue · TS · Payload', label: 'Headless & Frontend-Fokus' },
+      { value: 'Vue · React · CMS', label: 'Frontend, Headless CMS & KI' },
       { value: 'Claude Code · Codex', label: 'KI-gestützte Workflows' },
       { value: 'DE · EN · RU', label: 'Deutsch (C1) · Englisch (B1) · Russisch (Muttersprache)' },
     ],
@@ -189,9 +189,9 @@ export const UI_COPY = {
       contactCta: 'Contact me',
     },
     hero: {
-      kicker: 'Frontend & Full-Stack Web Developer · Freilassing, Germany',
-      headline: 'Structured web architectures, headless systems, and resilient production frontends.',
-      lead: 'Over ten years of hands-on experience building, migrating, and scaling production web applications — spanning Vue/Nuxt, TypeScript, Payload CMS, and AI-assisted engineering workflows.',
+      kicker: 'Full-Stack Developer · Frontend Focus · Freilassing, Germany',
+      headline: 'Hi, I’m Dmitri — Full-Stack Developer with a Frontend Focus.',
+      lead: 'For over ten years, I’ve been building, modernizing, and maintaining web projects from initial idea to production. I enjoy working where design meets engineering — using Vue, React, Headless CMS, and AI to make complex products fast and intuitive.',
       primaryAction: 'Send Email',
       copyEmail: 'Copy Email',
       copiedEmail: 'Copied',
@@ -200,7 +200,7 @@ export const UI_COPY = {
     metricsStrip: [
       { value: '10+ Years', label: 'Web Engineering since 2016' },
       { value: '7 Engagements', label: 'Product Teams & Freelance' },
-      { value: 'Vue · TS · Payload', label: 'Headless & Frontend Core' },
+      { value: 'Vue · React · CMS', label: 'Frontend, Headless CMS & AI' },
       { value: 'Claude Code · Codex', label: 'AI-Assisted Workflows' },
       { value: 'DE · EN · RU', label: 'German (C1) · English (B1) · Russian (Native)' },
     ],
