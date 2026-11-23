@@ -1,0 +1,209 @@
+---
+import { ArrowUpRight, MapPin } from 'lucide-react';
+import type { Locale } from '../data/portfolioData';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=Freilassing+Salzburg';
+---
+
+<div class="group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-blue-200/70 bg-[#EEF4FD] shadow-inner">
+  <!-- Custom Blue-Tinted Vector Map (Freilassing & Salzburg) -->
+  <svg
+    viewBox="0 0 460 250"
+    preserveAspectRatio="xMidYMid slice"
+    class="h-full w-full select-none"
+    role="img"
+    aria-label={
+      locale === 'de'
+        ? 'Regionskarte Freilassing und Salzburg'
+        : 'Regional map showing Freilassing and Salzburg'
+    }
+  >
+    <defs>
+      <linearGradient id="mapSkyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F2F7FF" />
+        <stop offset="55%" stop-color="#E9F1FE" />
+        <stop offset="100%" stop-color="#E2ECFD" />
+      </linearGradient>
+      <linearGradient id="lakeFill" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#93C5FD" />
+        <stop offset="100%" stop-color="#60A5FA" />
+      </linearGradient>
+    </defs>
+
+    <!-- Base terrain -->
+    <rect width="460" height="250" fill="url(#mapSkyBg)" />
+
+    <!-- Subtle faceted alpine relief polygons (southern Alps & hills) -->
+    <g opacity="0.65">
+      <polygon points="0,155 65,142 95,188 18,215" fill="#DFEAFC" />
+      <polygon points="65,142 145,152 130,205 95,188" fill="#E6EFFD" />
+      <polygon points="145,152 215,165 190,222 130,205" fill="#D8E6FB" />
+      <polygon points="215,165 275,155 268,225 190,222" fill="#E3EDFD" />
+      <polygon points="275,155 345,172 320,235 268,225" fill="#D5E4FB" />
+      <polygon points="345,172 460,158 460,250 320,235" fill="#DDEAFB" />
+      <polygon points="0,215 95,188 130,205 90,250 0,250" fill="#D4E3FA" />
+      <polygon points="190,222 268,225 295,250 175,250" fill="#CFE0FA" />
+      <polygon points="295,85 370,68 425,112 335,125" fill="#E7F0FE" />
+      <polygon points="370,68 460,55 460,130 425,112" fill="#E0ECFD" />
+    </g>
+
+    <!-- Water Bodies (Chiemsee, Waginger See, Wallersee, Mondsee, Königssee) -->
+    <path
+      d="M 55 96 C 65 86, 86 84, 96 92 C 102 98, 95 110, 102 120 C 98 130, 82 132, 74 126 C 62 132, 52 124, 54 114 C 46 108, 48 100, 55 96 Z"
+      fill="url(#lakeFill)"
+      fill-opacity="0.68"
+    />
+    <path
+      d="M 176 74 C 181 74, 185 84, 186 96 C 182 99, 177 95, 176 85 Z"
+      fill="url(#lakeFill)"
+      fill-opacity="0.65"
+    />
+    <path
+      d="M 304 72 C 312 65, 322 68, 320 77 C 316 84, 305 83, 304 72 Z"
+      fill="url(#lakeFill)"
+      fill-opacity="0.65"
+    />
+    <path
+      d="M 388 128 C 402 132, 412 146, 428 152 C 424 159, 410 156, 396 144 C 386 138, 384 132, 388 128 Z"
+      fill="url(#lakeFill)"
+      fill-opacity="0.68"
+    />
+    <path
+      d="M 254 205 C 258 205, 260 220, 256 232 C 251 232, 250 218, 254 205 Z"
+      fill="url(#lakeFill)"
+      fill-opacity="0.72"
+    />
+
+    <!-- Salzach & Inn Rivers -->
+    <path
+      d="M 192 8 C 194 34, 214 55, 224 82 C 234 102, 248 112, 266 126 C 282 142, 290 165, 306 205 L 318 248"
+      fill="none"
+      stroke="#93C5FD"
+      stroke-width="2.2"
+      stroke-linecap="round"
+    />
+
+    <!-- Highway & Regional Road Network (A8, B20, A1, E55) -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 105 18 L 114 68 L 138 112 L 154 160 L 125 215" stroke="#CBD9F2" stroke-width="1.15" />
+      <path d="M 138 112 L 185 118 L 245 118" stroke="#CBD9F2" stroke-width="1.25" />
+      <path d="M 218 164 L 266 184 L 296 188" stroke="#CBD9F2" stroke-width="1.15" />
+      <path d="M 262 12 L 266 72 L 252 118" stroke="#CBD9F2" stroke-width="1.15" />
+
+      <!-- B20 North-South through Freilassing -->
+      <path d="M 196 12 C 208 48, 228 84, 246 118 L 236 146 L 218 164" stroke="#93B4F5" stroke-width="1.8" />
+
+      <!-- A8 West-East past Chiemsee, Traunstein, Bad Reichenhall to Salzburg -->
+      <path
+        d="M 0 132 C 52 128, 98 134, 144 124 C 185 126, 212 146, 232 150 C 246 144, 262 134, 272 130"
+        stroke="#6096F7"
+        stroke-width="2.3"
+      />
+
+      <!-- A1 Northeast from Salzburg past Seekirchen & Mondsee -->
+      <path d="M 272 130 C 304 118, 342 98, 385 96 L 460 88" stroke="#6096F7" stroke-width="2.3" />
+
+      <!-- E55 / A10 South from Salzburg -->
+      <path d="M 272 130 C 282 158, 294 192, 314 248" stroke="#6096F7" stroke-width="2.1" />
+    </g>
+
+    <!-- Germany / Austria Border Line -->
+    <path
+      d="M 206 0 L 212 18 L 194 34 L 200 62 L 222 92 L 256 122 L 244 144 L 216 164 L 238 176 L 278 176 L 292 204 L 266 236 L 242 248 L 210 222 L 166 220 L 122 192 L 62 184 L 0 212"
+      fill="none"
+      stroke="#475569"
+      stroke-opacity="0.48"
+      stroke-width="1.2"
+      stroke-dasharray="3.5 3"
+      stroke-linejoin="round"
+    />
+
+    <!-- Road Shield Pills (A8, A1, B20) -->
+    <g class="font-sans text-[7.5px] font-semibold">
+      <rect x="206" y="136" width="13" height="10" rx="3" fill="#3B82F6" />
+      <text x="212.5" y="143.5" text-anchor="middle" fill="white">8</text>
+
+      <rect x="334" y="102" width="15" height="10" rx="3" fill="#3B82F6" />
+      <text x="341.5" y="109.5" text-anchor="middle" fill="white">A1</text>
+
+      <rect x="218" y="64" width="14" height="10" rx="3" fill="#FFFFFF" stroke="#93C5FD" stroke-width="0.8" />
+      <text x="225" y="71.5" text-anchor="middle" fill="#1E293B">20</text>
+    </g>
+
+    <!-- Secondary Regional City Labels -->
+    <g class="font-sans text-[8.5px] font-medium fill-slate-500">
+      <text x="74" y="114" text-anchor="middle" fill="#2563EB" opacity="0.8">Chiemsee</text>
+      <text x="210" y="15" text-anchor="middle">Burghausen</text>
+      <text x="176" y="68" text-anchor="middle">Waging am See</text>
+      <text x="136" y="106" text-anchor="middle">Traunstein</text>
+      <text x="212" y="176" text-anchor="middle">Bad Reichenhall</text>
+      <text x="262" y="196" text-anchor="middle">Berchtesgaden</text>
+      <text x="320" y="96" text-anchor="middle">Seekirchen</text>
+      <text x="404" y="122" text-anchor="middle">Mondsee</text>
+    </g>
+
+    <!-- Salzburg Marker & Clear Label -->
+    <g>
+      <circle cx="272" cy="130" r="9" fill="#64748B" fill-opacity="0.16" />
+      <circle cx="272" cy="130" r="4" fill="#FFFFFF" stroke="#475569" stroke-width="1.75" />
+      <rect
+        x="280"
+        y="124"
+        width="60"
+        height="17"
+        rx="6"
+        fill="#FFFFFF"
+        fill-opacity="0.95"
+        stroke="#CBD5E1"
+        stroke-width="0.9"
+      />
+      <text
+        x="310"
+        y="135.5"
+        text-anchor="middle"
+        class="font-display text-[10px] font-semibold fill-slate-800"
+      >
+        Salzburg
+      </text>
+    </g>
+
+    <!-- Freilassing Primary Location Marker & Prominent Label -->
+    <g>
+      <circle cx="248" cy="118" r="14" fill="#3B82F6" fill-opacity="0.18" />
+      <circle cx="248" cy="118" r="8" fill="#3B82F6" fill-opacity="0.28" />
+      <circle cx="248" cy="118" r="4.8" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
+      <rect x="176" y="95" width="68" height="19" rx="7" fill="#3B82F6" />
+      <text
+        x="210"
+        y="107.5"
+        text-anchor="middle"
+        class="font-display text-[10px] font-semibold fill-white"
+      >
+        Freilassing
+      </text>
+    </g>
+  </svg>
+
+  <!-- Bottom Floating Map Info & External Google Maps Link -->
+  <div class="pointer-events-none absolute inset-x-3 bottom-2.5 flex items-center justify-between gap-2">
+    <div class="pointer-events-auto inline-flex items-center gap-1.5 rounded-xl border border-white/90 bg-white/90 px-2.5 py-1 text-[0.6875rem] font-medium text-slate-700 shadow-xs backdrop-blur-xs">
+      <MapPin className="h-3 w-3 text-[#3B82F6]" />
+      <span>Freilassing · Salzburg</span>
+    </div>
+
+    <a
+      href={mapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="pointer-events-auto inline-flex items-center gap-1 rounded-xl border border-white/90 bg-white/90 px-2.5 py-1 text-[0.6875rem] font-medium text-slate-600 shadow-xs backdrop-blur-xs transition-colors hover:bg-white hover:text-[#3B82F6]"
+    >
+      <span>Maps</span>
+      <ArrowUpRight className="h-3 w-3" />
+    </a>
+  </div>
+</div>

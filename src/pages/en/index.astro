@@ -5,6 +5,8 @@ import Hero from '../../components/Hero.astro';
 import { ProjectsIsland } from '../../components/ProjectsIsland';
 import TimelineSection from '../../components/TimelineSection.astro';
 import ServicesContactSection from '../../components/ServicesContactSection.astro';
+import { WorksSection } from '../../components/WorksSection';
+import ContactMapSection from '../../components/ContactMapSection.astro';
 import Footer from '../../components/Footer.astro';
 
 const locale = 'en' as const;
@@ -27,6 +29,8 @@ const locale = 'en' as const;
       <ProjectsIsland locale={locale} client:visible />
       <TimelineSection locale={locale} />
       <ServicesContactSection locale={locale} />
+      <WorksSection locale={locale} client:visible />
+      <ContactMapSection locale={locale} />
     </main>
 
     <Footer locale={locale} />

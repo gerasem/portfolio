@@ -101,6 +101,7 @@ export const UI_COPY = {
       projects: 'Projekte',
       timeline: 'Erfahrung',
       services: 'Leistungen',
+      works: 'Arbeiten',
       contactCta: 'Kontakt',
     },
     hero: {
@@ -160,6 +161,20 @@ export const UI_COPY = {
       whatsappButton: 'WhatsApp',
       phoneButton: 'Anrufen',
     },
+    works: {
+      title: 'Meine Arbeiten',
+      subtitle: 'Ausgewählte Produkt- und UI-Umsetzungen — mit aktuellem Status, Einblicken, eingesetzten Technologien und direktem Link.',
+      filterAll: 'Alle',
+      filterDone: 'Fertiggestellt',
+      filterInProgress: 'In Arbeit',
+      statusDone: 'Fertiggestellt',
+      statusInProgress: 'In Arbeit',
+      techLabel: 'Technologien',
+      imagesCount: {
+        one: '1 Ansicht',
+        many: 'Ansichten',
+      },
+    },
     footer: {
       note: 'Begleitseite zum Lebenslauf · Stand 2026',
     },
@@ -170,6 +185,7 @@ export const UI_COPY = {
       projects: 'Projects',
       timeline: 'Experience',
       services: 'Services',
+      works: 'Works',
       contactCta: 'Contact me',
     },
     hero: {
@@ -228,6 +244,20 @@ export const UI_COPY = {
       contactButton: 'Contact me',
       whatsappButton: 'WhatsApp',
       phoneButton: 'Call',
+    },
+    works: {
+      title: 'My Works',
+      subtitle: 'Selected web builds and UI implementations — including current status, visual previews, stack, and direct links.',
+      filterAll: 'All',
+      filterDone: 'Completed',
+      filterInProgress: 'In Progress',
+      statusDone: 'Completed',
+      statusInProgress: 'In Progress',
+      techLabel: 'Technologies',
+      imagesCount: {
+        one: '1 preview',
+        many: 'previews',
+      },
     },
     footer: {
       note: 'CV Companion Presentation · Updated 2026',
