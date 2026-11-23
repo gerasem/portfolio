@@ -107,14 +107,14 @@ export const UI_COPY = {
     hero: {
       kicker: 'Full-Stack Developer · Fokus Frontend · Freilassing',
       headline: 'Hallo, ich bin Dmitri — Full-Stack Developer mit Fokus auf Frontend.',
-      lead: 'Seit über zehn Jahren entwickle, modernisiere und betreue ich Webprojekte von der ersten Idee bis zum produktiven Betrieb. Am liebsten arbeite ich an der Schnittstelle von Design und Code — mit Vue, React, Headless CMS und KI, um komplexe Produkte einfach und schnell nutzbar zu machen.',
+      lead: 'Nach meiner dreijährigen Ausbildung zum Fachinformatiker für Anwendungsentwicklung entwickle und modernisiere ich seit fünf Jahren produktive Webprojekte von der ersten Idee bis zum Betrieb. Am liebsten arbeite ich an der Schnittstelle von Design und Code — mit Vue, React, Headless CMS und KI, um komplexe Produkte einfach und schnell nutzbar zu machen.',
       primaryAction: 'E-Mail schreiben',
       copyEmail: 'E-Mail kopieren',
       copiedEmail: 'Kopiert',
       quickLinksLabel: 'Profile & Direktkontakt',
     },
     metricsStrip: [
-      { value: '10+ Jahre', label: 'Webentwicklung seit 2016' },
+      { value: '5+ Jahre Praxis', label: '+ 3 Jahre Ausbildung (seit 2016)' },
       { value: '7 Stationen', label: 'Produktteams & Freelance' },
       { value: 'Vue · React · CMS', label: 'Frontend, Headless CMS & KI' },
       { value: 'Claude Code · Codex', label: 'KI-gestützte Workflows' },
@@ -191,14 +191,14 @@ export const UI_COPY = {
     hero: {
       kicker: 'Full-Stack Developer · Frontend Focus · Freilassing, Germany',
       headline: 'Hi, I’m Dmitri — Full-Stack Developer with a Frontend Focus.',
-      lead: 'For over ten years, I’ve been building, modernizing, and maintaining web projects from initial idea to production. I enjoy working where design meets engineering — using Vue, React, Headless CMS, and AI to make complex products fast and intuitive.',
+      lead: 'With five years of professional experience following my three-year vocational training as a Software Developer (Fachinformatiker), I build and modernize production web projects from initial idea to launch. I enjoy working where design meets engineering — using Vue, React, Headless CMS, and AI to make complex products fast and intuitive.',
       primaryAction: 'Send Email',
       copyEmail: 'Copy Email',
       copiedEmail: 'Copied',
       quickLinksLabel: 'Profiles & Direct Channels',
     },
     metricsStrip: [
-      { value: '10+ Years', label: 'Web Engineering since 2016' },
+      { value: '5+ Years Pro', label: '+ 3 Years Vocational Training' },
       { value: '7 Engagements', label: 'Product Teams & Freelance' },
       { value: 'Vue · React · CMS', label: 'Frontend, Headless CMS & AI' },
       { value: 'Claude Code · Codex', label: 'AI-Assisted Workflows' },

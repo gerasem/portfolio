@@ -1,5 +1,5 @@
 ---
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin } from 'lucide-react';
 import { type Locale, PROFILE, UI_COPY } from '../data/portfolioData';
 import ImpressumModal from './ImpressumModal.astro';
 import DatenschutzModal from './DatenschutzModal.astro';
@@ -38,13 +38,6 @@ const copy = UI_COPY[locale];
       >
         <Linkedin className="h-3.5 w-3.5" />
         <span>LinkedIn</span>
-      </a>
-      <a
-        href={`mailto:${PROFILE.email}`}
-        class="inline-flex items-center gap-1.5 transition-colors hover:text-slate-900"
-      >
-        <Mail className="h-3.5 w-3.5" />
-        <span>{PROFILE.email}</span>
       </a>
       <button
         type="button"

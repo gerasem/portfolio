@@ -15,15 +15,12 @@ import {
   MY_WORKS,
   type WorkImage,
   type WorkShowcaseItem,
-  type WorkStatus,
 } from '../data/worksData';
 import { TechIcon } from './TechIcon';
 
 interface WorksSectionProps {
   locale: Locale;
 }
-
-type StatusFilter = 'all' | WorkStatus;
 
 interface LightboxState {
   workTitle: string;
@@ -150,14 +147,8 @@ function WorkGallery({
 }
 
 export function WorksSection({ locale }: WorksSectionProps) {
-  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [lightbox, setLightbox] = useState<LightboxState | null>(null);
   const copy = UI_COPY[locale].works;
-
-  const filteredWorks =
-    statusFilter === 'all'
-      ? MY_WORKS
-      : MY_WORKS.filter((item) => item.status === statusFilter);
 
   useEffect(() => {
     if (!lightbox) return;
@@ -190,62 +181,30 @@ export function WorksSection({ locale }: WorksSectionProps) {
     <MotionConfig reducedMotion="user">
       <section id="works" className="scroll-mt-16 py-12">
         <div className="mx-auto max-w-[1450px] px-6">
-          {/* Section Header + Status Filter Controls */}
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
+            className="max-w-2xl"
           >
-            <div className="max-w-2xl">
-              <h2 className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
-                {copy.title}
-              </h2>
-              <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
-                {copy.subtitle}
-              </p>
-            </div>
-
-            <div
-              role="group"
-              aria-label={locale === 'de' ? 'Nach Status filtern' : 'Filter by status'}
-              className="inline-flex w-fit items-center gap-1 rounded-2xl border border-slate-200/75 bg-white/85 p-1 shadow-xs"
-            >
-              {(
-                [
-                  { value: 'all', label: copy.filterAll },
-                  { value: 'done', label: copy.filterDone },
-                  { value: 'in-progress', label: copy.filterInProgress },
-                ] as const
-              ).map((option) => {
-                const active = statusFilter === option.value;
-                return (
-                  <button
-                    key={option.value}
-                    type="button"
-                    onClick={() => setStatusFilter(option.value)}
-                    aria-pressed={active}
-                    className={`rounded-xl px-3 py-1.5 text-xs font-medium whitespace-nowrap shrink-0 transition-all duration-150 focus-visible:outline-2 focus-visible:outline-blue-500 ${
-                      active
-                        ? 'bg-[#3B82F6] text-white shadow-xs shadow-blue-500/25'
-                        : 'text-slate-600 hover:text-slate-900'
-                    }`}
-                  >
-                    {option.label}
-                  </button>
-                );
-              })}
-            </div>
+            <h2 className="font-display text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+              {copy.title}
+            </h2>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
+              {copy.subtitle}
+            </p>
           </motion.div>
 
           {/* Works Showcase List */}
           <div className="mt-6 space-y-5">
-            {filteredWorks.map((work, idx) => {
+            {MY_WORKS.map((work, idx) => {
               const isDone = work.status === 'done';
               const statusText = isDone
                 ? copy.statusDone
                 : copy.statusInProgress;
+              const hasImages = work.images.length > 0;
               const imageCountLabel =
                 work.images.length === 1
                   ? copy.imagesCount.one
@@ -265,7 +224,11 @@ export function WorksSection({ locale }: WorksSectionProps) {
                   className="grid grid-cols-1 items-stretch gap-6 rounded-3xl border border-slate-200/70 bg-white/95 p-5 shadow-[0_8px_28px_-10px_rgba(30,41,59,0.06)] transition-shadow duration-200 hover:shadow-[0_14px_34px_-10px_rgba(30,41,59,0.1)] sm:p-6 lg:grid-cols-12"
                 >
                   {/* Left Details Column */}
-                  <div className="flex flex-col justify-between gap-5 lg:col-span-5">
+                  <div
+                    className={`flex flex-col justify-between gap-5 ${
+                      hasImages ? 'lg:col-span-5' : 'lg:col-span-12'
+                    }`}
+                  >
                     <div>
                       <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs font-medium">
                         <span className="tabular-nums text-slate-400">
@@ -286,12 +249,16 @@ export function WorksSection({ locale }: WorksSectionProps) {
                           )}
                           <span>{statusText}</span>
                         </span>
-                        <span aria-hidden="true" className="text-slate-300">
-                          ·
-                        </span>
-                        <span className="tabular-nums text-slate-400">
-                          {imageCountLabel}
-                        </span>
+                        {hasImages && (
+                          <>
+                            <span aria-hidden="true" className="text-slate-300">
+                              ·
+                            </span>
+                            <span className="tabular-nums text-slate-400">
+                              {imageCountLabel}
+                            </span>
+                          </>
+                        )}
                       </div>
 
                       <h3 className="mt-3 font-display text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
@@ -341,19 +308,21 @@ export function WorksSection({ locale }: WorksSectionProps) {
                   </div>
 
                   {/* Right Adaptive 1 / 2 / 3 Image Gallery */}
-                  <div className="lg:col-span-7">
-                    <WorkGallery
-                      work={work}
-                      locale={locale}
-                      onOpenLightbox={(imageIndex) =>
-                        setLightbox({
-                          workTitle: work.title[locale],
-                          images: work.images,
-                          index: imageIndex,
-                        })
-                      }
-                    />
-                  </div>
+                  {hasImages && (
+                    <div className="lg:col-span-7">
+                      <WorkGallery
+                        work={work}
+                        locale={locale}
+                        onOpenLightbox={(imageIndex) =>
+                          setLightbox({
+                            workTitle: work.title[locale],
+                            images: work.images,
+                            index: imageIndex,
+                          })
+                        }
+                      />
+                    </div>
+                  )}
                 </motion.article>
               );
             })}
