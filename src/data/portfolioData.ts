@@ -1,3 +1,14 @@
+import contaboPreviewImg from '../assets/images/projects/contabo.jpg';
+import ecommercePreviewImg from '../assets/images/projects/ecommerce.jpg';
+import laravelReactPreviewImg from '../assets/images/projects/laravel-react.jpg';
+import wttPreviewImg from '../assets/images/projects/wtt.jpg';
+import sidecapsPreviewImg from '../assets/images/projects/sidecaps.jpg';
+import mtmsPreviewImg from '../assets/images/projects/mtms.jpg';
+import makrohausPreviewImg from '../assets/images/projects/makrohaus.jpg';
+
+const resolveSrc = (asset: string | { src: string }): string =>
+  typeof asset === 'string' ? asset : asset.src;
+
 export type Locale = 'de' | 'en';
 
 export type RoleFilter = 'all' | 'company' | 'freelance';
@@ -43,6 +54,8 @@ export interface ProjectItem {
   stack: string[];
   stackFilters: Exclude<StackFilter, 'all'>[];
   highlightMetric: LocalizedText;
+  previewImage?: string;
+  previewAlt?: LocalizedText;
   link?: string;
   linkLabel?: LocalizedText;
 }
@@ -114,7 +127,7 @@ export const UI_COPY = {
       quickLinksLabel: 'Profile & Direktkontakt',
     },
     metricsStrip: [
-      { value: '5+ Jahre Praxis', label: '+ 3 Jahre Ausbildung (seit 2016)' },
+      { value: '5+ Jahre Praxis', label: '+ 3 Jahre Ausbildung (seit 2018)' },
       { value: '7 Stationen', label: 'Produktteams & Freelance' },
       { value: 'Vue · React · CMS', label: 'Frontend, Headless CMS & KI' },
       { value: 'Claude Code · Codex', label: 'KI-gestützte Workflows' },
@@ -144,6 +157,7 @@ export const UI_COPY = {
       modalStackTitle: 'Verwendeter Stack',
       modalOutcomeLabel: 'Schwerpunkt',
       modalContactPrompt: 'Fragen zu diesem Projekt?',
+      previewDisclaimer: 'Hinweis: Die Vorschaubilder dienen der visuellen Orientierung und wurden zum Schutz von Marken- und Urheberrechten stilisiert, abstrahiert oder KI-gestützt generiert.',
     },
     timeline: {
       title: 'Beruflicher Werdegang',
@@ -228,6 +242,7 @@ export const UI_COPY = {
       modalStackTitle: 'Technology Stack',
       modalOutcomeLabel: 'Primary Focus',
       modalContactPrompt: 'Want to discuss this project?',
+      previewDisclaimer: 'Note: All preview visuals are illustrative representations that have been stylized, abstracted, or AI-generated to respect third-party trademarks and copyrights.',
     },
     timeline: {
       title: 'Career Timeline',
@@ -403,6 +418,11 @@ export const PROJECTS: ProjectItem[] = [
       de: 'Contentful -> Payload + Astro',
       en: 'Contentful -> Payload + Astro',
     },
+    previewImage: resolveSrc(contaboPreviewImg),
+    previewAlt: {
+      de: 'Stilisierte Vorschau der Cloud-Hosting-Website',
+      en: 'Stylized preview of the cloud hosting website',
+    },
   },
   {
     id: 'freelance-ecommerce',
@@ -442,6 +462,11 @@ export const PROJECTS: ProjectItem[] = [
     highlightMetric: {
       de: 'Headless Shop · SSG',
       en: 'Headless Storefront · SSG',
+    },
+    previewImage: resolveSrc(ecommercePreviewImg),
+    previewAlt: {
+      de: 'Stilisierte Vorschau der Headless E-Commerce-Storefront',
+      en: 'Stylized preview of the headless e-commerce storefront',
     },
     link: 'https://github.com/gerasem',
     linkLabel: {
@@ -488,6 +513,11 @@ export const PROJECTS: ProjectItem[] = [
       de: 'Laravel API + React TS',
       en: 'Laravel API + React TS',
     },
+    previewImage: resolveSrc(laravelReactPreviewImg),
+    previewAlt: {
+      de: 'Illustratives Mitarbeiter- und Admin-Portal mit Dashboard',
+      en: 'Illustrative employee and admin portal dashboard',
+    },
     link: 'https://github.com/gerasem',
     linkLabel: {
       de: 'GitHub-Profil',
@@ -533,6 +563,11 @@ export const PROJECTS: ProjectItem[] = [
       de: 'Ember.js -> Vue 3 + Vitest',
       en: 'Ember.js -> Vue 3 + Vitest',
     },
+    previewImage: resolveSrc(wttPreviewImg),
+    previewAlt: {
+      de: 'Stilisierte Vorschau des Learning-Management-Dashboards',
+      en: 'Stylized preview of the learning management dashboard',
+    },
   },
   {
     id: 'sidecaps-trading',
@@ -572,6 +607,11 @@ export const PROJECTS: ProjectItem[] = [
     highlightMetric: {
       de: 'Multi-Legacy -> Nuxt 2',
       en: 'Multi-Legacy -> Nuxt 2',
+    },
+    previewImage: resolveSrc(sidecapsPreviewImg),
+    previewAlt: {
+      de: 'Illustratives Finanz- und Aktienportal mit Echtzeit-Kursverlauf',
+      en: 'Illustrative financial and stock portal with live price chart',
     },
   },
   {
@@ -613,6 +653,11 @@ export const PROJECTS: ProjectItem[] = [
       de: 'Visueller Editor · Vue 3',
       en: 'Visual Canvas Editor · Vue 3',
     },
+    previewImage: resolveSrc(mtmsPreviewImg),
+    previewAlt: {
+      de: 'Illustrativer Saalplan- und Sitzplatzbuchungs-Editor',
+      en: 'Illustrative venue seat-map and booking editor',
+    },
   },
   {
     id: 'makrohaus-cms',
@@ -652,6 +697,11 @@ export const PROJECTS: ProjectItem[] = [
     highlightMetric: {
       de: 'WordPress + CakePHP',
       en: 'WordPress + CakePHP',
+    },
+    previewImage: resolveSrc(makrohausPreviewImg),
+    previewAlt: {
+      de: 'Abstrakte Illustration modularer WordPress- und CMS-Architektur',
+      en: 'Abstract illustration of modular WordPress and CMS architecture',
     },
   },
 ];

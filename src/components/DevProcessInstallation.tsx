@@ -75,7 +75,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
       id="pipeline"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 p-6 shadow-[0_14px_40px_-14px_rgba(30,41,59,0.09)] backdrop-blur-sm"
+      className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 p-5 shadow-[0_14px_40px_-14px_rgba(30,41,59,0.09)] backdrop-blur-sm"
     >
       {/* Gentle ambient glow in top-right corner */}
       <div
@@ -94,7 +94,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
       </div>
 
       {/* Flowing 4-Phase Stepper with Smooth Shared Active Indicator */}
-      <div className="relative mt-5 rounded-2xl bg-slate-50/90 p-1.5">
+      <div className="relative mt-3.5 rounded-2xl bg-slate-50/90 p-1.5">
         <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
           {PIPELINE_STAGES.map((stage, idx) => {
             const isActive = idx === activeStageIdx;
@@ -105,7 +105,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 key={stage.id}
                 type="button"
                 onClick={() => handleSelectStage(idx)}
-                className="relative flex flex-col justify-between rounded-xl px-2.5 py-2.5 text-left transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-blue-500"
+                className="relative flex flex-col justify-between rounded-xl px-2.5 py-2 text-left transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-blue-500"
               >
                 {isActive && (
                   <motion.div
@@ -117,13 +117,13 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
 
                 <div className="relative z-10 flex items-center justify-between gap-1.5">
                   <span
-                    className={`inline-flex h-6 w-6 items-center justify-center rounded-lg transition-colors ${
+                    className={`inline-flex h-5 w-5 items-center justify-center rounded-lg transition-colors ${
                       isActive
                         ? 'bg-blue-50 text-blue-600'
                         : 'bg-white/70 text-slate-400'
                     }`}
                   >
-                    <StageIcon className="h-3.5 w-3.5" />
+                    <StageIcon className="h-3 w-3" />
                   </span>
                   {stage.aiHighlight && (
                     <Sparkles
@@ -136,7 +136,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 </div>
 
                 <div
-                  className={`relative z-10 mt-2 text-xs leading-snug font-medium ${
+                  className={`relative z-10 mt-1.5 text-xs leading-snug font-medium ${
                     isActive ? 'text-slate-900 font-semibold' : 'text-slate-500'
                   }`}
                 >
@@ -149,8 +149,8 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
       </div>
 
       {/* Gentle Flowing SVG Ribbon Connector */}
-      <div className="relative my-3 px-2" aria-hidden="true">
-        <svg viewBox="0 0 560 28" className="h-6 w-full overflow-visible">
+      <div className="relative my-1.5 px-2" aria-hidden="true">
+        <svg viewBox="0 0 560 24" className="h-4 w-full overflow-visible">
           <defs>
             <linearGradient id="softStreamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#93C5FD" />
@@ -159,14 +159,14 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
             </linearGradient>
           </defs>
           <path
-            d="M 10 14 Q 140 2, 280 14 T 550 14"
+            d="M 10 12 Q 140 2, 280 12 T 550 12"
             fill="none"
             stroke="#E2E8F0"
             strokeWidth="2"
             strokeLinecap="round"
           />
           <path
-            d="M 10 14 Q 140 2, 280 14 T 550 14"
+            d="M 10 12 Q 140 2, 280 12 T 550 12"
             fill="none"
             stroke="url(#softStreamGrad)"
             strokeWidth="2.5"
@@ -179,7 +179,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
 
       {/* Full Stack & AI Constellation — All Key Tools Visible, Active Stage Illuminated */}
       <div className="relative">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-4">
           {ALL_STACK_NODES.map((node) => {
             const isActiveNode = node.stageIdx === activeStageIdx;
 
@@ -188,7 +188,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 key={node.name}
                 type="button"
                 onClick={() => handleSelectStage(node.stageIdx)}
-                className={`group flex items-center gap-2 rounded-2xl border px-2.5 py-2 text-left transition-all duration-200 focus-visible:outline-2 focus-visible:outline-blue-500 ${
+                className={`group flex items-center gap-2 rounded-2xl border px-2.5 py-1.5 text-left transition-all duration-200 focus-visible:outline-2 focus-visible:outline-blue-500 ${
                   isActiveNode
                     ? node.isAi
                       ? 'border-blue-300/80 bg-blue-50/75 text-slate-900 shadow-[0_6px_16px_-4px_rgba(59,130,246,0.2)]'
@@ -197,7 +197,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 }`}
               >
                 <span
-                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-xl transition-transform duration-200 ${
+                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-lg transition-transform duration-200 ${
                     isActiveNode
                       ? 'bg-white shadow-2xs group-hover:scale-105'
                       : 'bg-white/60 grayscale-[35%]'
@@ -220,7 +220,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
-        className="relative mt-5 rounded-2xl bg-slate-50/80 px-4 py-3.5"
+        className="relative mt-3.5 rounded-2xl bg-slate-50/80 px-4 py-2.5"
       >
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <span className="font-display text-xs font-semibold text-slate-800">

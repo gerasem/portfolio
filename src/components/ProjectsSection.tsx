@@ -161,31 +161,44 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
                 }}
                 className="group flex flex-col justify-between rounded-3xl border border-slate-200/65 bg-white/95 p-6 shadow-[0_8px_28px_-10px_rgba(30,41,59,0.06)] transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300/80 hover:shadow-[0_14px_32px_-10px_rgba(30,41,59,0.1)]"
               >
-                <div>
-                  {/* Unboxed Typographic Metadata Row */}
-                  <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                    <span className="tabular-nums font-medium text-blue-600">
-                      {project.period}
-                    </span>
-                    <span aria-hidden="true" className="text-slate-300">
-                      ·
-                    </span>
-                    <span className="font-semibold text-slate-800">
-                      {project.company}
-                    </span>
-                    <span aria-hidden="true" className="text-slate-300">
-                      ·
-                    </span>
-                    <span>{project.roleTitle[locale]}</span>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0 flex-1">
+                    {/* Unboxed Typographic Metadata Row */}
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                      <span className="tabular-nums font-medium text-blue-600">
+                        {project.period}
+                      </span>
+                      <span aria-hidden="true" className="text-slate-300">
+                        ·
+                      </span>
+                      <span className="font-semibold text-slate-800">
+                        {project.company}
+                      </span>
+                      <span aria-hidden="true" className="text-slate-300">
+                        ·
+                      </span>
+                      <span>{project.roleTitle[locale]}</span>
+                    </div>
+
+                    <h3 className="mt-2.5 font-display text-base font-semibold leading-snug tracking-tight text-slate-900">
+                      {project.title[locale]}
+                    </h3>
+
+                    <p className="mt-2 text-[0.84375rem] leading-relaxed text-slate-600">
+                      {project.summary[locale]}
+                    </p>
                   </div>
 
-                  <h3 className="mt-2.5 font-display text-base font-semibold leading-snug tracking-tight text-slate-900">
-                    {project.title[locale]}
-                  </h3>
-
-                  <p className="mt-2 text-[0.84375rem] leading-relaxed text-slate-600">
-                    {project.summary[locale]}
-                  </p>
+                  {project.previewImage && (
+                    <div className="w-full shrink-0 overflow-hidden rounded-2xl sm:w-48 lg:w-52 aspect-[5/3] pointer-events-none select-none">
+                      <img
+                        src={project.previewImage}
+                        alt={project.previewAlt?.[locale] ?? project.title[locale]}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-center"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Tech Icons Row + Soft Shadowed Action */}
@@ -215,6 +228,11 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
             ))}
           </div>
         )}
+
+        {/* Copyright & AI-illustration disclaimer */}
+        <p className="mt-4 text-xs leading-relaxed text-slate-400">
+          {copy.previewDisclaimer}
+        </p>
       </div>
     </section>
   );
