@@ -2,6 +2,7 @@
 import {
   Github,
   Linkedin,
+  MapPin,
 } from 'lucide-react';
 import { type Locale, PROFILE, UI_COPY } from '../data/portfolioData';
 import { DevProcessInstallation } from './DevProcessInstallation';
@@ -57,19 +58,46 @@ const mailtoSubject = encodeURIComponent(
     <!-- 2-Column Split: Open Airy Left Intro | Elevated Soft Right Installation -->
     <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-[5fr_8fr]">
       <div class="flex flex-col justify-center">
-        <p class="text-xs font-semibold tracking-wide text-blue-600">
-          {copy.hero.kicker}
-        </p>
+        <div class="inline-flex w-fit items-center gap-1.5 rounded-full border border-blue-200/75 bg-white/85 px-3 py-1 text-[0.6875rem] font-medium tracking-wide text-slate-600 shadow-2xs backdrop-blur-xs">
+          <MapPin className="h-3.5 w-3.5 shrink-0 text-[#3B82F6]" />
+          <span>{copy.hero.kicker}</span>
+        </div>
 
         <h1
-          class="mt-3 font-display font-semibold tracking-tight text-slate-900"
-          style="font-size: clamp(1.75rem, 2.75vw, 2.35rem); line-height: 1.18; text-wrap: balance;"
+          class="mt-4 font-display tracking-tight text-slate-900"
+          style="font-size: clamp(1.75rem, 2.7vw, 2.3rem); line-height: 1.18;"
         >
-          {copy.hero.headline}
+          <span class="block font-normal text-slate-500">
+            {copy.hero.headlineGreeting}<span class="font-bold text-slate-900">{copy.hero.headlineName}</span>
+          </span>
+          <span class="mt-0.5 block font-bold text-slate-900">
+            {copy.hero.headlineRole}
+          </span>
+          <span class="block bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#0284C7] bg-clip-text font-bold text-transparent">
+            {copy.hero.headlineFocus}
+          </span>
         </h1>
 
-        <p class="mt-4 text-[0.9375rem] leading-relaxed text-slate-600">
-          {copy.hero.lead}
+        <p class="mt-4 font-sans text-[0.9375rem] font-normal leading-relaxed text-slate-600">
+          {locale === 'de' ? (
+            <>
+              Nach meiner dreijährigen Ausbildung zum Fachinformatiker für Anwendungsentwicklung
+              entwickle und modernisiere ich seit fünf Jahren produktive Webprojekte von der
+              ersten Idee bis zum Betrieb. Am liebsten arbeite ich an der Schnittstelle von Design
+              und Code — mit{' '}
+              <span class="font-semibold text-slate-800">Vue, React, Headless CMS und KI</span>, um
+              komplexe Produkte einfach und schnell nutzbar zu machen.
+            </>
+          ) : (
+            <>
+              With five years of professional experience following my three-year vocational training
+              as a Software Developer (Fachinformatiker), I build and modernize production web
+              projects from initial idea to launch. I enjoy working where design meets engineering —
+              using{' '}
+              <span class="font-semibold text-slate-800">Vue, React, Headless CMS, and AI</span>{' '}
+              to make complex products fast and intuitive.
+            </>
+          )}
         </p>
 
         <!-- Soft GitHub & LinkedIn Profile Links -->
