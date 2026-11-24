@@ -17,6 +17,10 @@ const {
     ? 'Portfolio & Projektübersicht von Dmitri Laptev: Vue/Nuxt, TypeScript, Payload CMS, Astro, React und KI-gestützte Webentwicklung.'
     : 'Portfolio & project overview of Dmitri Laptev: Vue/Nuxt, TypeScript, Payload CMS, Astro, React and AI-assisted web development.',
 } = Astro.props;
+
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
+const deUrl = Astro.site ? new URL('/', Astro.site).toString() : '/';
+const enUrl = Astro.site ? new URL('/en/', Astro.site).toString() : '/en/';
 ---
 
 <!doctype html>
@@ -27,12 +31,15 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="alternate" hreflang="de" href="/" />
-    <link rel="alternate" hreflang="en" href="/en/" />
+    <link rel="alternate" hreflang="de" href={deUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={deUrl} />
   </head>
   <body class="bg-[#F6F8FC] text-[#1E293B] antialiased selection:bg-[#3B82F6]/15 selection:text-[#1E293B]">
     <slot />
