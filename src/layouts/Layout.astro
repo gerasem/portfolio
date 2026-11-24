@@ -21,6 +21,64 @@ const {
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
 const deUrl = Astro.site ? new URL('/', Astro.site).toString() : '/';
 const enUrl = Astro.site ? new URL('/en/', Astro.site).toString() : '/en/';
+const siteOrigin = Astro.site ? Astro.site.toString().replace(/\/$/, '') : 'https://dlaptev.de';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteOrigin}/#person`,
+      name: 'Dmitri Laptev',
+      url: siteOrigin,
+      jobTitle:
+        lang === 'de'
+          ? 'Full-Stack Developer mit Fokus auf Frontend'
+          : 'Full-Stack Developer with a Frontend Focus',
+      description,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Freilassing',
+        addressRegion: 'Bayern',
+        addressCountry: 'DE',
+      },
+      sameAs: [
+        'https://github.com/gerasem',
+        'https://www.linkedin.com/in/dmitri-laptev',
+      ],
+      knowsLanguage: ['de', 'en', 'ru'],
+      knowsAbout: [
+        'Vue.js',
+        'Nuxt',
+        'React',
+        'TypeScript',
+        'Payload CMS',
+        'Astro',
+        'Svelte',
+        'Tailwind CSS',
+        'WordPress',
+        'Laravel',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteOrigin}/#website`,
+      url: siteOrigin,
+      name: 'Dmitri Laptev — Portfolio',
+      inLanguage: ['de', 'en'],
+      author: { '@id': `${siteOrigin}/#person` },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${canonicalUrl ?? siteOrigin}#webpage`,
+      url: canonicalUrl ?? siteOrigin,
+      name: title,
+      inLanguage: lang,
+      isPartOf: { '@id': `${siteOrigin}/#website` },
+      mainEntity: { '@id': `${siteOrigin}/#person` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -40,6 +98,7 @@ const enUrl = Astro.site ? new URL('/en/', Astro.site).toString() : '/en/';
     <link rel="alternate" hreflang="de" href={deUrl} />
     <link rel="alternate" hreflang="en" href={enUrl} />
     <link rel="alternate" hreflang="x-default" href={deUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="bg-[#F6F8FC] text-[#1E293B] antialiased selection:bg-[#3B82F6]/15 selection:text-[#1E293B]">
     <slot />

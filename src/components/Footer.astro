@@ -21,7 +21,10 @@ const copy = UI_COPY[locale];
       <span>{copy.footer.note}</span>
     </div>
 
-    <div class="flex flex-wrap items-center gap-5">
+    <nav
+      aria-label={locale === 'de' ? 'Profile & Rechtliches' : 'Profiles & Legal'}
+      class="flex flex-wrap items-center gap-5"
+    >
       <a
         href={PROFILE.githubUrl}
         target="_blank"
@@ -54,7 +57,7 @@ const copy = UI_COPY[locale];
       >
         <span>{locale === 'de' ? 'Datenschutz' : 'Privacy'}</span>
       </button>
-    </div>
+    </nav>
   </div>
 </footer>
 
