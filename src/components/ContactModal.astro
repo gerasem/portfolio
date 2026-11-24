@@ -1,0 +1,101 @@
+---
+import { ArrowUpRight, Linkedin, Mail, X } from 'lucide-react';
+import { type Locale, PROFILE } from '../data/portfolioData';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const title = locale === 'de' ? 'Kontakt aufnehmen' : 'Get in touch';
+const introText =
+  locale === 'de'
+    ? 'Ich freue mich über Anfragen zu Festanstellungen, Projekten oder einem kurzen Kennenlerngespräch. Am schnellsten erreichen Sie mich direkt per E-Mail oder über LinkedIn.'
+    : 'I’m always open to discussing full-time roles, freelance projects, or scheduling a quick intro call. The fastest way to reach me is via email or LinkedIn.';
+---
+
+<div
+  id="contact-modal"
+  data-nosnippet
+  role="dialog"
+  aria-modal="true"
+  aria-label={title}
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/45 p-4 backdrop-blur-xs"
+>
+  <div
+    data-contact-panel
+    class="relative w-full max-w-md overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-6 shadow-[0_24px_60px_-15px_rgba(15,23,42,0.25)] sm:p-7"
+  >
+    <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div class="font-display text-base font-semibold tracking-tight text-slate-900">
+        {title}
+      </div>
+      <button
+        type="button"
+        data-close-contact
+        aria-label={locale === 'de' ? 'Schließen' : 'Close'}
+        class="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-blue-500"
+      >
+        <X className="h-4 w-4" />
+      </button>
+    </div>
+
+    <p class="mt-4 text-[0.84375rem] leading-relaxed text-slate-600">
+      {introText}
+    </p>
+
+    <div class="mt-5 space-y-3">
+      <!-- Email channel (revealed 1s after open, plain selectable text) -->
+      <div class="rounded-2xl border border-slate-200/80 bg-slate-50/60 p-4">
+        <div class="flex items-center gap-2.5">
+          <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#3B82F6]">
+            <Mail className="h-4 w-4" />
+          </span>
+          <div class="min-w-0">
+            <div class="text-[0.71875rem] font-medium text-slate-400">E-Mail</div>
+            <div class="text-sm font-semibold text-slate-800">
+              <span
+                data-pii="email"
+                aria-busy="true"
+                class="inline-block rounded bg-slate-200/70 text-transparent animate-pulse select-none"
+              >••••••••••</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LinkedIn channel -->
+      <a
+        href={PROFILE.linkedinUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group flex items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-2xs transition-all duration-150 hover:border-blue-200 hover:bg-blue-50/30 hover:shadow-xs focus-visible:outline-2 focus-visible:outline-blue-500"
+      >
+        <div class="flex min-w-0 items-center gap-2.5">
+          <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#0A66C2]/10 text-[#0A66C2]">
+            <Linkedin className="h-4 w-4" />
+          </span>
+          <div class="min-w-0">
+            <div class="text-[0.71875rem] font-medium text-slate-400">LinkedIn</div>
+            <div class="truncate text-sm font-semibold text-slate-800 group-hover:text-blue-600">
+              {PROFILE.linkedinHandle}
+            </div>
+          </div>
+        </div>
+        <ArrowUpRight className="h-4 w-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-600" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { bindPiiModal } from '../utils/piiReveal';
+  bindPiiModal(
+    'contact-modal',
+    '[data-open-contact]',
+    '[data-close-contact]',
+    '[data-contact-panel]',
+    'open-contact-modal'
+  );
+</script>

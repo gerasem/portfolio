@@ -88,7 +88,6 @@ export interface ServiceItem {
 
 export const PROFILE = {
   name: 'Dmitri Laptev',
-  email: '592050@gmx.de',
   phone: '+49 159 0707 3013',
   phoneHref: 'tel:+4915907073013',
   whatsappHref: 'https://wa.me/4915907073013',

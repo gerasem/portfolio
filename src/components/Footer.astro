@@ -3,6 +3,7 @@ import { Github, Linkedin } from 'lucide-react';
 import { type Locale, PROFILE, UI_COPY } from '../data/portfolioData';
 import ImpressumModal from './ImpressumModal.astro';
 import DatenschutzModal from './DatenschutzModal.astro';
+import ContactModal from './ContactModal.astro';
 
 interface Props {
   locale: Locale;
@@ -59,3 +60,4 @@ const copy = UI_COPY[locale];
 
 <ImpressumModal locale={locale} />
 <DatenschutzModal locale={locale} />
+<ContactModal locale={locale} />

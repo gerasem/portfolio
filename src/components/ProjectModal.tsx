@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { ArrowUpRight, Mail, X } from 'lucide-react';
-import { type Locale, PROFILE, type ProjectItem, UI_COPY } from '../data/portfolioData';
+import { type Locale, type ProjectItem, UI_COPY } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
 interface ProjectModalProps {
@@ -26,11 +26,6 @@ export function ProjectModal({ project, locale, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   const copy = UI_COPY[locale].projects;
-  const mailtoSubject = encodeURIComponent(
-    locale === 'de'
-      ? `Rückfrage zu Projekt: ${project.company}`
-      : `Question regarding project: ${project.company}`
-  );
 
   return (
     <div
@@ -152,13 +147,17 @@ export function ProjectModal({ project, locale, onClose }: ProjectModalProps) {
                 <ArrowUpRight className="h-3.5 w-3.5 text-slate-400" />
               </a>
             )}
-            <a
-              href={`mailto:${PROFILE.email}?subject=${mailtoSubject}`}
+            <button
+              type="button"
+              onClick={() => {
+                onClose();
+                window.dispatchEvent(new CustomEvent('open-contact-modal'));
+              }}
               className="inline-flex items-center gap-1.5 rounded-2xl bg-[#3B82F6] px-4 py-2 text-xs font-semibold text-white shadow-[0_6px_16px_-4px_rgba(59,130,246,0.4)] transition-all hover:bg-[#2563EB] hover:shadow-[0_8px_20px_-4px_rgba(59,130,246,0.5)] whitespace-nowrap shrink-0"
             >
               <Mail className="h-3.5 w-3.5" />
               <span>{UI_COPY[locale].services.contactButton}</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>
