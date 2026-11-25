@@ -48,7 +48,7 @@ const copy = UI_COPY[locale];
         data-open-impressum
         class="inline-flex items-center transition-colors hover:text-slate-900"
       >
-        <span>Impressum</span>
+        <span>{locale === 'de' ? 'Impressum' : 'Legal Notice'}</span>
       </button>
       <button
         type="button"

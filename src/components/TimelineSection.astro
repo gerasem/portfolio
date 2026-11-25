@@ -1,5 +1,5 @@
 ---
-import { type Locale, TIMELINE_ENTRIES, UI_COPY } from '../data/portfolioData';
+import { type Locale, localize, TIMELINE_ENTRIES, UI_COPY } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
 interface Props {
@@ -78,7 +78,7 @@ const educationEntries = TIMELINE_ENTRIES.filter((entry) => entry.category === '
 
             <div class="md:col-span-4">
               <div class="font-display text-sm font-semibold text-slate-800">
-                {entry.organization}
+                {localize(entry.organization, locale)}
               </div>
               <div class="mt-0.5 text-xs font-medium text-slate-500">
                 {entry.role[locale]}
@@ -130,7 +130,7 @@ const educationEntries = TIMELINE_ENTRIES.filter((entry) => entry.category === '
 
             <div class="md:col-span-4">
               <div class="font-display text-sm font-semibold text-slate-800">
-                {entry.organization}
+                {localize(entry.organization, locale)}
               </div>
               <div class="mt-0.5 text-xs font-medium text-slate-500">
                 {entry.role[locale]}

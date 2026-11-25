@@ -27,6 +27,9 @@ export interface LocalizedText {
   en: string;
 }
 
+export const localize = (value: string | LocalizedText, locale: Locale): string =>
+  typeof value === 'string' ? value : value[locale];
+
 export interface PipelineStage {
   id: string;
   index: string;
@@ -41,7 +44,7 @@ export interface PipelineStage {
 export interface ProjectItem {
   id: string;
   period: string;
-  company: string;
+  company: string | LocalizedText;
   location: LocalizedText;
   roleCategory: 'company' | 'freelance';
   roleTitle: LocalizedText;
@@ -63,7 +66,7 @@ export interface ProjectItem {
 export interface TimelineEntry {
   id: string;
   period: string;
-  organization: string;
+  organization: string | LocalizedText;
   location: LocalizedText;
   role: LocalizedText;
   category: 'experience' | 'education';
@@ -91,7 +94,10 @@ export const PROFILE = {
   phone: '+49 159 0707 3013',
   phoneHref: 'tel:+4915907073013',
   whatsappHref: 'https://wa.me/4915907073013',
-  location: 'D-83395 Freilassing, Bayern, Deutschland',
+  location: {
+    de: 'D-83395 Freilassing, Bayern, Deutschland',
+    en: 'D-83395 Freilassing, Bavaria, Germany',
+  },
   githubUrl: 'https://github.com/gerasem',
   githubHandle: 'github.com/gerasem',
   linkedinUrl: 'https://www.linkedin.com/in/dmitri-laptev',
@@ -434,7 +440,10 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: 'freelance-ecommerce',
     period: '02.2025 – 04.2026',
-    company: 'Selbstständig / Freelance',
+    company: {
+      de: 'Selbstständig / Freelance',
+      en: 'Self-Employed / Freelance',
+    },
     location: {
       de: 'Freilassing (Remote)',
       en: 'Freilassing (Remote)',
@@ -484,7 +493,10 @@ export const PROJECTS: ProjectItem[] = [
   {
     id: 'freelance-laravel-react',
     period: '02.2025 – 04.2026',
-    company: 'Kundenprojekte (Freelance)',
+    company: {
+      de: 'Kundenprojekte (Freelance)',
+      en: 'Client Projects (Freelance)',
+    },
     location: {
       de: 'DACH / Remote',
       en: 'DACH / Remote',
@@ -736,7 +748,10 @@ export const TIMELINE_ENTRIES: TimelineEntry[] = [
   {
     id: 'tl-freelance-25',
     period: '02.2025 – 04.2026',
-    organization: 'Freiberuflicher Full-Stack Entwickler',
+    organization: {
+      de: 'Freiberuflicher Full-Stack Entwickler',
+      en: 'Freelance Full-Stack Developer',
+    },
     location: { de: 'Selbstständig', en: 'Self-Employed' },
     role: { de: 'Full-Stack Web Developer', en: 'Full-Stack Web Developer' },
     category: 'experience',
@@ -831,7 +846,10 @@ export const TIMELINE_ENTRIES: TimelineEntry[] = [
   {
     id: 'tl-freelance-16',
     period: '07.2016 – 07.2018',
-    organization: 'Freiberuflicher Webentwickler',
+    organization: {
+      de: 'Freiberuflicher Webentwickler',
+      en: 'Freelance Web Developer',
+    },
     location: { de: 'Selbstständig', en: 'Freelance' },
     role: { de: 'Webentwickler & Webdesigner', en: 'Web Developer & Designer' },
     category: 'experience',

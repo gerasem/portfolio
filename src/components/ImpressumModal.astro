@@ -15,7 +15,7 @@ const isDe = locale === 'de';
   data-nosnippet
   role="dialog"
   aria-modal="true"
-  aria-label="Impressum"
+  aria-label={isDe ? 'Impressum' : 'Legal Notice (Impressum)'}
   class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/45 p-4 backdrop-blur-xs"
 >
   <div
@@ -24,7 +24,7 @@ const isDe = locale === 'de';
   >
     <div class="flex items-center justify-between gap-4 border-b border-slate-100 pb-4">
       <h2 class="font-display text-base font-semibold tracking-tight text-slate-900">
-        Impressum
+        {isDe ? 'Impressum' : 'Legal Notice (Impressum)'}
       </h2>
       <button
         type="button"

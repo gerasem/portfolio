@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import {
   type Locale,
+  localize,
   PROJECTS,
   type ProjectItem,
   type RoleFilter,
@@ -172,7 +173,7 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
                         ·
                       </span>
                       <span className="font-semibold text-slate-800">
-                        {project.company}
+                        {localize(project.company, locale)}
                       </span>
                       <span aria-hidden="true" className="text-slate-300">
                         ·

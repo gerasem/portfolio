@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { ArrowUpRight, Mail, X } from 'lucide-react';
-import { type Locale, type ProjectItem, UI_COPY } from '../data/portfolioData';
+import { type Locale, localize, type ProjectItem, UI_COPY } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
 interface ProjectModalProps {
@@ -49,7 +49,7 @@ export function ProjectModal({ project, locale, onClose }: ProjectModalProps) {
               <span aria-hidden="true" className="text-slate-300">
                 ·
               </span>
-              <span className="font-semibold text-slate-800">{project.company}</span>
+              <span className="font-semibold text-slate-800">{localize(project.company, locale)}</span>
               <span aria-hidden="true" className="text-slate-300">
                 ·
               </span>
