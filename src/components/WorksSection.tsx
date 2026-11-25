@@ -231,7 +231,7 @@ export function WorksSection({ locale }: WorksSectionProps) {
                   >
                     <div>
                       <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs font-medium">
-                        <span className="tabular-nums text-slate-400">
+                        <span className="tabular-nums text-slate-500">
                           {work.index}
                         </span>
                         <span aria-hidden="true" className="text-slate-300">
@@ -254,7 +254,7 @@ export function WorksSection({ locale }: WorksSectionProps) {
                             <span aria-hidden="true" className="text-slate-300">
                               ·
                             </span>
-                            <span className="tabular-nums text-slate-400">
+                            <span className="tabular-nums text-slate-500">
                               {imageCountLabel}
                             </span>
                           </>
@@ -273,7 +273,7 @@ export function WorksSection({ locale }: WorksSectionProps) {
                     <div className="space-y-4">
                       {/* Technologies */}
                       <div className="border-t border-slate-100 pt-3.5">
-                        <div className="text-xs font-medium text-slate-400">
+                        <div className="text-xs font-medium text-slate-500">
                           {copy.techLabel}
                         </div>
                         <div className="mt-2 flex flex-wrap items-center gap-x-3.5 gap-y-2">

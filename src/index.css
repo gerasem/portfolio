@@ -52,20 +52,17 @@
 
 @keyframes sky-mist-drift {
   0%, 100% {
-    transform: translateX(-220px);
-    background: radial-gradient(ellipse at 50% 35%, rgba(147, 197, 253, 0.56), rgba(191, 219, 254, 0.32) 45%, transparent 74%);
+    transform: translate3d(-180px, 0, 0);
   }
-  33% {
-    transform: translateX(0px);
-    background: radial-gradient(ellipse at 50% 35%, rgba(165, 180, 252, 0.54), rgba(199, 210, 254, 0.3) 45%, transparent 74%);
-  }
-  66% {
-    transform: translateX(220px);
-    background: radial-gradient(ellipse at 50% 35%, rgba(125, 211, 252, 0.56), rgba(186, 230, 253, 0.32) 45%, transparent 74%);
+  50% {
+    transform: translate3d(180px, 0, 0);
   }
 }
 
 .animate-sky-mist {
+  background: radial-gradient(ellipse at 50% 35%, rgba(147, 197, 253, 0.56), rgba(191, 219, 254, 0.32) 45%, transparent 74%);
+  will-change: transform;
+  contain: layout style paint;
   animation: sky-mist-drift 9s ease-in-out infinite;
 }
 

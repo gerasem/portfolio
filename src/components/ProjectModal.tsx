@@ -153,7 +153,7 @@ export function ProjectModal({ project, locale, onClose }: ProjectModalProps) {
                 onClose();
                 window.dispatchEvent(new CustomEvent('open-contact-modal'));
               }}
-              className="inline-flex items-center gap-1.5 rounded-2xl bg-[#3B82F6] px-4 py-2 text-xs font-semibold text-white shadow-[0_6px_16px_-4px_rgba(59,130,246,0.4)] transition-all hover:bg-[#2563EB] hover:shadow-[0_8px_20px_-4px_rgba(59,130,246,0.5)] whitespace-nowrap shrink-0"
+              className="inline-flex items-center gap-1.5 rounded-2xl bg-[#2563EB] px-4 py-2 text-xs font-semibold text-white shadow-[0_6px_16px_-4px_rgba(37,99,235,0.4)] transition-all hover:bg-[#1D4ED8] hover:shadow-[0_8px_20px_-4px_rgba(37,99,235,0.5)] whitespace-nowrap shrink-0"
             >
               <Mail className="h-3.5 w-3.5" />
               <span>{UI_COPY[locale].services.contactButton}</span>

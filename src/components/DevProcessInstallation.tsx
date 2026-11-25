@@ -137,7 +137,7 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
 
                 <div
                   className={`relative z-10 mt-1.5 text-xs leading-snug font-medium ${
-                    isActive ? 'text-slate-900 font-semibold' : 'text-slate-500'
+                    isActive ? 'text-slate-900 font-semibold' : 'text-slate-600'
                   }`}
                 >
                   {stage.label[locale]}
@@ -191,16 +191,16 @@ export function DevProcessInstallation({ locale }: DevProcessInstallationProps) 
                 className={`group flex items-center gap-2 rounded-2xl border px-2.5 py-1.5 text-left transition-all duration-200 focus-visible:outline-2 focus-visible:outline-blue-500 ${
                   isActiveNode
                     ? node.isAi
-                      ? 'border-blue-300/80 bg-blue-50/75 text-slate-900 shadow-[0_6px_16px_-4px_rgba(59,130,246,0.2)]'
-                      : 'border-slate-200 bg-white text-slate-900 shadow-[0_6px_16px_-4px_rgba(30,41,59,0.08)]'
-                    : 'border-slate-100 bg-slate-50/50 text-slate-400 opacity-65 hover:opacity-100 hover:bg-white'
+                      ? 'border-blue-300/80 bg-blue-50/75 font-semibold text-slate-900 shadow-[0_6px_16px_-4px_rgba(59,130,246,0.2)]'
+                      : 'border-slate-200 bg-white font-semibold text-slate-900 shadow-[0_6px_16px_-4px_rgba(30,41,59,0.08)]'
+                    : 'border-slate-100 bg-slate-50/60 text-slate-600 hover:text-slate-900 hover:bg-white'
                 }`}
               >
                 <span
                   className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-lg transition-transform duration-200 ${
                     isActiveNode
                       ? 'bg-white shadow-2xs group-hover:scale-105'
-                      : 'bg-white/60 grayscale-[35%]'
+                      : 'bg-white/75'
                   }`}
                 >
                   <TechIcon name={node.name} className="h-3.5 w-3.5" />

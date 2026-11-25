@@ -1,5 +1,7 @@
 ---
 import '../index.css';
+import dmSansUrl from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+import plusJakartaUrl from '@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2?url';
 import type { Locale } from '../data/portfolioData';
 
 interface Props {
@@ -87,6 +89,8 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="font" type="font/woff2" href={dmSansUrl} crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href={plusJakartaUrl} crossorigin />
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}

@@ -118,7 +118,7 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
                   onClick={() => setStackFilter(stack)}
                   className={`inline-flex items-center gap-1.5 rounded-2xl border px-3 py-1.5 text-xs font-medium transition-all duration-150 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-blue-500 ${
                     active
-                      ? 'border-blue-500/30 bg-[#3B82F6] text-white shadow-[0_4px_12px_-2px_rgba(59,130,246,0.38)]'
+                      ? 'border-blue-600/30 bg-[#2563EB] text-white shadow-[0_4px_12px_-2px_rgba(37,99,235,0.38)]'
                       : 'border-slate-200/75 bg-white text-slate-600 shadow-2xs hover:border-slate-300 hover:text-slate-900 hover:shadow-xs'
                   }`}
                 >
@@ -195,7 +195,10 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
                       <img
                         src={project.previewImage}
                         alt={project.previewAlt?.[locale] ?? project.title[locale]}
+                        width={560}
+                        height={336}
                         loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
@@ -231,7 +234,7 @@ export function ProjectsSection({ locale, onSelectProject }: ProjectsSectionProp
         )}
 
         {/* Copyright & AI-illustration disclaimer */}
-        <p className="mt-4 text-xs leading-relaxed text-slate-400">
+        <p className="mt-4 text-xs leading-relaxed text-slate-600">
           {copy.previewDisclaimer}
         </p>
       </div>
